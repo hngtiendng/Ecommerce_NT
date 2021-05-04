@@ -20,6 +20,8 @@
   - Customer Site : ***http://customersite-hngtiendng.azurewebsites.net/***
 ## Architecture
 ![image info](./Architecture.png)
+## Database Diagram
+![image info](./DatabaseDiagram.png)
 ## Construct
 ### ServerSite
 -	Login/logout
