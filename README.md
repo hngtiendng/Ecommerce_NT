@@ -15,9 +15,9 @@
   - Server Site + Customer Site : WebApp
   - Datbase : SQL Database
 ## Deploy Hosting:
-  - Admin Site : ***https://dngadmin.z23.web.core.windows.net/***
-  - Server Site : ***https://hngtiendng.azurewebsites.net***
-  - Customer Site : ***https://hngtiendngnt.azurewebsites.net***
+  - Admin Site : ***https://sahngtiendng.z23.web.core.windows.net/***
+  - Server Site : ***https://backend-hngtiendng.azurewebsites.net/***
+  - Customer Site : ***http://customersite-hngtiendng.azurewebsites.net/***
 ## Architecture
 ![image info](./Architecture.png)
 ## Construct
