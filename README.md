@@ -21,7 +21,7 @@
 ## Architecture
 ![image info](./Architecture.png)
 ## Database Diagram
-![image info](./DatabaseDiagram.png)
+![image info](./DatabaseDiagram.PNG)
 ## Construct
 ### ServerSite
 -	Login/logout
