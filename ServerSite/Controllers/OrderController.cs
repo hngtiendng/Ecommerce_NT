@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ServerSite.Data;
 using ServerSite.Models;
 using SharedVm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -103,7 +104,7 @@ namespace ServerSite.Controllers
                 {
                     Status = order.Status,
                     Id = order.Id,
-                    CraeteDate = order.CraeteDate,
+                    CraeteDate = DateTime.Now,
                     UserId = order.UserId,
                     TotalPrice = order.TotalPrice,
                     orderDetailVms = orderDetailVms
