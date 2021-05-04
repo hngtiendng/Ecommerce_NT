@@ -140,7 +140,7 @@ const CreateProduct = () => {
           <div id="preview"></div>
         </FormGroup>
       </Form>
-      <Link to="/product">
+      <Link to="/">
         <Button
           color="success"
           onClick={() => {

@@ -115,8 +115,8 @@ namespace ServerSite.Controllers
         //}
 
         [HttpGet("getCartByUser/{userId}")]
-        //[Authorize(Roles = "user")]
-        [AllowAnonymous]
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
         public async Task<ActionResult<CartVm>> GetCartByUser(string userId)
         {
 
@@ -169,8 +169,8 @@ namespace ServerSite.Controllers
         }
 
         [HttpPost()]
-        //[Authorize(Roles = "user")]
-        [AllowAnonymous]
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
         public async Task<ActionResult<CartVm>> CreateCart(CartVm cartVm)
         {
             List<CartItem> lstProducts = new();
@@ -213,8 +213,8 @@ namespace ServerSite.Controllers
 
         }
         [HttpPut("addCartItem/{userId}/{productId}/{quantity}")]
-        //[Authorize(Roles = "user")]
-        [AllowAnonymous]
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
         public async Task<ActionResult<CartVm>> AddCartItem(string userId, int productId, int quantity)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == productId);
@@ -244,34 +244,34 @@ namespace ServerSite.Controllers
             });
 
         }
-        //[HttpPut("removeItem/{userId}/{productId}")]
-        ////[Authorize(Roles = "admin")]
+        [HttpPut("removeItem/{userId}/{productId}")]
+        [Authorize(Roles = "user")]
         //[AllowAnonymous]
-        //public async Task<IActionResult> RemoveItem(string userId, int productId)
-        //{
-        //    var cart = await _context.Carts.Include(c=>c.CartItems).FirstOrDefaultAsync(x => x.UserId == userId);
-        //    foreach (CartItem p in cart.CartItems)
-        //    {
-        //        if (p.Id == productId)
-        //        {
-        //            cart.CartItems.Remove(p);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //    }
-        //    if (cart == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    await _context.SaveChangesAsync();
+        public async Task<IActionResult> RemoveItem(string userId, int productId)
+        {
+            var cart = await _context.Carts.Include(c => c.CartItems).ThenInclude(c=>c.Product).FirstOrDefaultAsync(x => x.UserId == userId);
+            foreach (CartItem p in cart.CartItems)
+            {
+                if (p.Product.Id == productId)
+                {
+                    cart.CartItems.Remove(p);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            if (cart == null)
+            {
+                return NotFound();
+            }
+            await _context.SaveChangesAsync();
 
-        //    return CreatedAtAction("Get", new { id = cart.Id }, new CartVm
-        //    {
-        //        Id = cart.Id,
-        //        UserId = cart.UserId,
-        //        TotalPrice = cart.TotalPrice,
+            return CreatedAtAction("Get", new { id = cart.Id }, new CartVm
+            {
+                Id = cart.Id,
+                UserId = cart.UserId,
+                TotalPrice = cart.TotalPrice,
 
-        //    });
-        //}
+            });
+        }
         [HttpPut("clearCart/{userId}")]
         [Authorize(Roles = "user")]
         //[AllowAnonymous]

@@ -23,6 +23,7 @@ namespace ServerSite.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        //[Authorize]
         public async Task<ActionResult<IEnumerable<BannerVm>>> GetAllBanner()
         {
             return await _context.Banners

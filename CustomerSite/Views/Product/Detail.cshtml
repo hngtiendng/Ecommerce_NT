@@ -76,7 +76,7 @@
                 <li class="list-group-item">
                     <div class="input-group">
                         <label for="quantity">Quantity :    </label>
-                        <input type="number" id="quantity" name="quantity" style="width: 50px;margin-left:10px" value="1">
+                        <input type="number" id="quantity" name="quantity" style="height: 40px;width:50px;margin-left:10px" value="1">
                         <br /><br /<br />
                     </div>
                 </li>
@@ -86,7 +86,7 @@
                         var userId = User.Claims.ElementAt(2).Value;
                         <li class="list-group-item">
 
-                            <button typeof="submit" class="btn btn-success" asp-controller="Cart" asp-action="AddCartItem" asp-route-userId="@userId" asp-route-productId="@Model.Id">Thêm Vào Giỏ Hàng</button>
+                            <button typeof="submit" class="btn btn-success" asp-controller="Cart" asp-action="AddCartItem" asp-route-userId="@userId" asp-route-productId="@Model.Id">Add to Cart</button>
                         </li>
                     }
                     else

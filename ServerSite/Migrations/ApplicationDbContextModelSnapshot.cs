@@ -236,7 +236,7 @@ namespace ServerSite.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("cartItems");
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("ServerSite.Models.Category", b =>

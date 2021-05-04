@@ -12,7 +12,7 @@ namespace ServerSite.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize("Bearer")]
+    [Authorize("Bearer")]
     public class OrderController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -38,8 +38,8 @@ namespace ServerSite.Controllers
         //}
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "user")]
-        [AllowAnonymous]
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
         public async Task<ActionResult<OrderVm>> GetOrderById(int id)
         {
             var order = await _context.Orders.Include(x => x.OrderDetails).FirstOrDefaultAsync(x => x.Id == id);
@@ -73,9 +73,9 @@ namespace ServerSite.Controllers
             return orderVm;
         }
         [HttpGet("getOrderByUser/{userId}")]
-        ///[Authorize(Roles = "user")]
-        [AllowAnonymous]
-        public async Task<IEnumerable<OrderVm>> GetOrderByUser(string userId)
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<OrderVm>>> GetOrderByUser(string userId)
         {
             //var order = await _context.Orders.Include(o => o.OrderDetails).Where(x => x.UserId == userId)
             //   .FirstOrDefaultAsync();
@@ -137,8 +137,8 @@ namespace ServerSite.Controllers
         //}
 
         [HttpPost("{userId}")]
-        //[Authorize(Roles = "user")]
-        [AllowAnonymous]
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
         public async Task<ActionResult<OrderVm>> CreateOrder(string userId, List<OrderDetailVm> orderDetailVm1)
         {
 
@@ -173,8 +173,8 @@ namespace ServerSite.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(Roles = "user")]
-        [AllowAnonymous]
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
         public async Task<ActionResult> DeleteOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);

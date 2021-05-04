@@ -13,14 +13,14 @@ namespace CustomerSite.Services.Apis
     public class CartApiClient : ICartApiClient
     {
         private readonly IConfiguration _configuration;
-        private readonly IHttpClientFactory _httpClientFactory;
+        
         private readonly IRequest _request;
 
-        public CartApiClient(IConfiguration configuration, IHttpClientFactory httpClientFactory, IRequest request)
+        public CartApiClient(IConfiguration configuration,IRequest request)
         {
             _request = request;
             _configuration = configuration;
-            _httpClientFactory = httpClientFactory;
+     
         }
         public async Task<CartVm> CreateCart(CartVm cartVm)
         {
@@ -63,15 +63,15 @@ namespace CustomerSite.Services.Apis
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<CartVm>();
         }
-        //public async Task<CartVm> RemoveItem(string userId, int productId)
-        //{
-        //    await GetCartByUser(userId);
-        //    var client = _httpClientFactory.CreateClient();
-            
-        //    var response = await client.PutAsync(_configuration["BackendUrl:Default"] + "/api/Cart/removeItem/" + userId + "/" + productId, null);
-        //    response.EnsureSuccessStatusCode();
-        //    return await response.Content.ReadFromJsonAsync<CartVm>();
-        //}
+        public async Task<CartVm> RemoveItem(string userId, int productId)
+        {
+            await GetCartByUser(userId);
+            var client = _request.SendAccessToken().Result;
+
+            var response = await client.PutAsync(_configuration["BackendUrl:Default"] + "/api/Cart/removeItem/" + userId + "/" + productId, null);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<CartVm>();
+        }
         public async Task<CartVm> ClearCart(string userId)
         {
             await GetCartByUser(userId);

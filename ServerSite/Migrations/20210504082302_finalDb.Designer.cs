@@ -10,8 +10,8 @@ using ServerSite.Data;
 namespace ServerSite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210501112912_fix1")]
-    partial class fix1
+    [Migration("20210504082302_finalDb")]
+    partial class finalDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -238,7 +238,7 @@ namespace ServerSite.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("cartItems");
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("ServerSite.Models.Category", b =>

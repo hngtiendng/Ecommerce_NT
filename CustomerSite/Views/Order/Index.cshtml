@@ -7,9 +7,9 @@
 {
     <table class="table table-bordered">
         <tr>
-            <th style="text-align:center">Mã hóa đơn</th>
-            <th style="text-align:center">Thời gian lập HĐ</th>
-            <th style="text-align:center">Chức năng</th>
+            <th style="text-align:center">Order Id</th>
+            <th style="text-align:center">Create Date</th>
+            <th style="text-align:center">Option</th>
         </tr>
 
         @foreach (var item in Model)
@@ -29,8 +29,8 @@ else
 {
     <div class="card text-center">
         <div class="card-body">
-            <h5 class="card-title">Bạn chưa có đơn hàng nào.</h5>
-            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Bắt đầu mua sắm</a>
+            <h5 class="card-title">You do't have any order.</h5>
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Shop Now !</a>
         </div>
     </div>
 }

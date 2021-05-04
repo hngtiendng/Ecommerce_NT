@@ -19,7 +19,7 @@ namespace ServerSite.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartItem> cartItems { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -161,6 +161,7 @@ namespace ServerSite.Data
                     ImagePath = "/images/Phone/p1.png",
                     ProductId = 1
                 },
+               
                 new Image
                 {
                     Id = 2,

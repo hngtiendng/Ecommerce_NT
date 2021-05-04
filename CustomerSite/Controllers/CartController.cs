@@ -44,7 +44,7 @@ namespace CustomerSite.Controllers
                         };
                         pVm.productVm.CategoryId = x.productVm.CategoryId;
                         pVm.productVm.Description = x.productVm.Description;
-                        pVm.productVm.Id = x.Id;
+                        pVm.productVm.Id = x.productVm.Id;
                         pVm.productVm.ImageLocation = x.productVm.ImageLocation;
                         pVm.productVm.Inventory = x.productVm.Inventory;
                         pVm.productVm.Name = x.productVm.Name;
@@ -69,12 +69,12 @@ namespace CustomerSite.Controllers
             await _cartApiClient.AddCartItem(userId, productId, quantity);
             return Redirect("Index");
         }
-        //public async Task<IActionResult> RemoveItem(int Id)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    await _cartApiClient.RemoveItem(userId, Id);
-        //    return RedirectToAction("Index");
-        //}
+        public async Task<IActionResult> RemoveItem(int Id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await _cartApiClient.RemoveItem(userId, Id);
+            return RedirectToAction("Index");
+        }
 
         public async Task<IActionResult> ClearCart()
         {

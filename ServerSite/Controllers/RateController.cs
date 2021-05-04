@@ -97,8 +97,8 @@ namespace ServerSite.Controllers
 
 
         [HttpPost]
-        //[Authorize(Roles = "user")]
-        [AllowAnonymous]
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
         public async Task<ActionResult<Rate>> CreateRate(RateVm rateVm)
         {
             var x = await _context.Rates.Where(x => x.ProductId == rateVm.ProductId).FirstOrDefaultAsync();
