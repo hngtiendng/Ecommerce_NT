@@ -15,6 +15,7 @@ namespace SharedVm
         //public string Content { get; set; }
         public decimal AverageStar { get; set; }
         public List<RateVm> rateVms { get; set; }
+        public bool isDelete { get; set; }
 
     }
 }

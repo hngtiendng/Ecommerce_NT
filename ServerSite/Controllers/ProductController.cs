@@ -33,7 +33,7 @@ namespace ServerSite.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetAllProduct()
         {
-            var products = await _context.Products.Include(p => p.Images).ToListAsync();
+            var products = await _context.Products.Include(p => p.Images).Where(x => x.isDelete == false).ToListAsync();
             if (products == null)
             {
                 return NotFound();
@@ -224,6 +224,23 @@ namespace ServerSite.Controllers
 
         //    return Accepted();
         //}
+        [HttpPut("{ProductId}")]
+        [Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> DeleteProduct(int ProductId)
+        {
+            var product = await _context.Products.FindAsync(ProductId);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.isDelete = true;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
     }
 }

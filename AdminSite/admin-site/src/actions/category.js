@@ -3,6 +3,7 @@ import {
   CATEGORY_LIST,
   CREATE_CATEGORY,
   UPDATE_CATEGORY,
+  DELETE_CATEGORY
 } from "../contains/category";
 export const get_category_list = () => async (dispatch) => {
   try {
@@ -30,6 +31,18 @@ export const create_category = (category) => async (dispatch) => {
 export const update_category = (category) => async (dispatch) => {
   try {
     const data = await api.Category.updateCategory(category);
+
+    dispatch({
+      type: UPDATE_CATEGORY,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const delete_category = (category) => async (dispatch) => {
+  try {
+    const data = await api.Category.deleteCategory(category);
 
     dispatch({
       type: UPDATE_CATEGORY,

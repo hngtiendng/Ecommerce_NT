@@ -15,6 +15,11 @@ export default (state = initialState, { type, payload }) => {
       console.log(payload);
       return { ...state };
     }
+    case category.DELETE_CATEGORY: {
+      state.categoryId = payload.data;
+      console.log(payload);
+      return { ...state };
+    }
     default:
       return state;
   }

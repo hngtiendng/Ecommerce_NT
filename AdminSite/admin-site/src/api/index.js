@@ -7,13 +7,14 @@ const Product = {
   getAllProducts: async () => await axios.get("/api/Product"),
   createProduct: async (data) => await axios.post(`api/Product`, data),
   updateProduct: async (data) => await axios.put("api/product", data),
-  deleteproduct: async (id) => await axios.delete(`api/product/${id}`),
+  deleteProduct: async (id) => await axios.put(`api/product/${id}`),
 };
 
 const Category = {
   getAllCategory: async () => await axios.get("/api/Category"),
   updateCategory: async (category) => await axios.put("api/Category", category),
   createCategory: async (data) => await axios.post(`api/Category`, data),
+  deleteCategory: async (id) => await axios.put(`api/Category/${id}`),
 };
 
 const Images = {

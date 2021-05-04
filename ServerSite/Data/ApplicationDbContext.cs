@@ -29,16 +29,19 @@ namespace ServerSite.Data
                 {
                     Id = 1,
                     Name = "Phone",
+                    Description= "Phone Description"
                 },
                 new Category
                 {
                     Id = 2,
                     Name = "Tablet",
+                    Description = "Tablet Description"
                 },
                 new Category
                 {
                     Id = 3,
                     Name = "Laptop",
+                    Description = "Laptop Description"
                 }
                 );
 

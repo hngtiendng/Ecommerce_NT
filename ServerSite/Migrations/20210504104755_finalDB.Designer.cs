@@ -10,8 +10,8 @@ using ServerSite.Data;
 namespace ServerSite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210504082302_finalDb")]
-    partial class finalDb
+    [Migration("20210504104755_finalDB")]
+    partial class finalDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -254,6 +254,9 @@ namespace ServerSite.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isDelete")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
@@ -262,17 +265,23 @@ namespace ServerSite.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Phone"
+                            Description = "Phone Description",
+                            Name = "Phone",
+                            isDelete = false
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Tablet"
+                            Description = "Tablet Description",
+                            Name = "Tablet",
+                            isDelete = false
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Laptop"
+                            Description = "Laptop Description",
+                            Name = "Laptop",
+                            isDelete = false
                         });
                 });
 
@@ -434,6 +443,9 @@ namespace ServerSite.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<bool>("isDelete")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -449,7 +461,8 @@ namespace ServerSite.Migrations
                             Description = "Samsung Galaxy A32 4G là chiếc điện thoại thuộc phân khúc tầm trung nhưng sở hữu nhiều ưu điểm vượt trội về màn hình lớn sắc nét, bộ bốn camera 64 MP cùng vi xử lý hiệu năng cao và được bán ra với mức giá vô cùng tốt.",
                             Inventory = 100,
                             Name = "Samsung Galaxy A32",
-                            Price = 6690000.0
+                            Price = 6690000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -459,7 +472,8 @@ namespace ServerSite.Migrations
                             Description = "Trong những tháng cuối năm 2020 Apple đã chính thức giới thiệu đến người dùng cũng như iFan thế hệ iPhone 12 series mới với hàng loạt tính năng bức phá, thiết kế được lột xác hoàn toàn, hiệu năng đầy mạnh mẽ và một trong số đó chính là iPhone 12 64GB.",
                             Inventory = 100,
                             Name = "iPhone 12 64GB",
-                            Price = 21990000.0
+                            Price = 21990000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -469,7 +483,8 @@ namespace ServerSite.Migrations
                             Description = "Xiaomi đã trình làng chiếc điện thoại mang tên gọi là Xiaomi Redmi Note 10 với điểm nhấn chính là cụm 4 camera 48 MP, chip rồng Snapdragon 678 mạnh mẽ cùng nhiều nâng cấp như dung lượng pin 5.000 mAh và hỗ trợ sạc nhanh 33 W tiện lợi.",
                             Inventory = 100,
                             Name = "Xiaomi Redmi Note 10",
-                            Price = 5370000.0
+                            Price = 5370000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -479,7 +494,8 @@ namespace ServerSite.Migrations
                             Description = "Chiếc máy tính bảng giá rẻ đáng mong chờ của Huawei, Huawei MatePad T10s cuối cùng cũng đã chính thức ra mắt. Với vi xử lý 8 nhân mở ra một thế giới giải trí mượt mà, sống động từng khoảnh khắc với màn hình cực lớn, hé lộ một chiếc máy tính bảng tốt trong tầm giá mà bất kỳ ai cũng đều yêu thích.",
                             Inventory = 100,
                             Name = "Huawei MatePad T10s",
-                            Price = 5290000.0
+                            Price = 5290000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -489,7 +505,8 @@ namespace ServerSite.Migrations
                             Description = "Samsung Galaxy Tab A7 (2020) là một chiếc máy tính bảng có thiết kế đẹp, cấu hình khá, nhiều tính năng tiện ích, một công cụ đắc lực hỗ trợ bạn trong công việc cũng như trong học tập hay giải trí.",
                             Inventory = 100,
                             Name = "Samsung Galaxy Tab A7",
-                            Price = 6390000.0
+                            Price = 6390000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -499,7 +516,8 @@ namespace ServerSite.Migrations
                             Description = "Từ việc sử dụng các thiết bị điện tử đa dạng của các gia đình hiện nay, Lenovo đã nắm bắt được nhu cầu thiết yếu này và cho ra mắt chiếc máy tính bảng Lenovo Tab M10 - FHD Plus với những tính năng tiện ích ấn tượng, “khoác chiếc áo” của thời đại và có mức giá siêu ưu đãi.",
                             Inventory = 100,
                             Name = "Lenovo Tab M10",
-                            Price = 5190000.0
+                            Price = 5190000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -509,7 +527,8 @@ namespace ServerSite.Migrations
                             Description = "Lenovo IdeaPad S340 14IIL (81VV003VVN) sở hữu cấu hình khá, hiệu năng ổn định và thiết kế tinh tế đẹp mắt. Đây sẽ là chiếc laptop văn phòng phù hợp với đối tượng sinh viên, dân văn phòng thường xuyên xử lý các tác vụ văn phòng, học tập và chỉnh sửa hình ảnh cơ bản.",
                             Inventory = 100,
                             Name = "Lenovo IdeaPad S340",
-                            Price = 13990000.0
+                            Price = 13990000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -519,7 +538,8 @@ namespace ServerSite.Migrations
                             Description = "Với bộ xử lý Intel Core i3 thế hệ thứ 10 tiên tiến cũng như các tùy chọn ổ cứng siêu nhanh, lưu trữ rộng lớn, Lenovo IdeaPad Flex 5 14IIL05 i3 chắc chắn là một lựa chọn tuyệt vời để bạn sử dụng hàng ngày.",
                             Inventory = 100,
                             Name = "Lenovo IdeaPad Flex 5",
-                            Price = 16490000.0
+                            Price = 16490000.0,
+                            isDelete = false
                         },
                         new
                         {
@@ -529,7 +549,8 @@ namespace ServerSite.Migrations
                             Description = "Laptop Lenovo ThinkBook 15IIL i3 (20SM00D9VN) sở hữu thiết kế từ kim loại toát lên vẻ sang trọng, sắc sảo, cấu hình lí tưởng cho học tập, trình duyệt web khi trang bị bộ vi xử lý Intel thế hệ thứ 10 mới và ổ cứng SSD cực nhanh",
                             Inventory = 100,
                             Name = "Lenovo ThinkBook 15IIL",
-                            Price = 11690000.0
+                            Price = 11690000.0,
+                            isDelete = false
                         });
                 });
 

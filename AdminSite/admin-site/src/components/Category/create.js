@@ -24,10 +24,19 @@ const CreateCategory = () => {
             onChange={(e) => setCategory({ ...category, name: e.target.value })}
           />
 
-          <FormText color="muted">
-            This is some placeholder block-level help text for the above input.
-            It's a bit lighter and easily wraps to a new line.
-          </FormText>
+         
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleEmail">Description</Label>
+          <Input
+            type="text"
+            name="name"
+            id="exampleEmail"
+            placeholder="Description"
+            onChange={(e) => setCategory({ ...category, description: e.target.value })}
+          />
+
+         
         </FormGroup>
       </Form>
       {/* <Link to='/product'> </Link> */}

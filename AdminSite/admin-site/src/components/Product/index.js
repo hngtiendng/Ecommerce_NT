@@ -1,8 +1,16 @@
 import React from "react";
 import { Table, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { delete_product } from "../../actions/product";
 console.log(process.env.REACT_APP_ADMIN);
 export default function ProductList(props) {
+  const refreshPage=async(e)=> {
+    await dispatch(delete_product(e.id))
+    await window.location.reload(false);
+
+  }
+  const dispatch = useDispatch();
   return (
     <Table class="table">
       <thead>
@@ -38,6 +46,7 @@ export default function ProductList(props) {
                   <Link to={`updateProduct/${item.id}`}>
                     <Button color="info">Update</Button>
                   </Link>
+                  <Button color="danger" onClick={()=>refreshPage(item)}>Delete</Button>{" "}
                 </td>
               </tr>
             );

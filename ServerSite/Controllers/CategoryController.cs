@@ -25,8 +25,8 @@ namespace ServerSite.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CategoryVm>>> GetAllCategory()
         {
-            return await _context.Categories
-                .Select(x => new CategoryVm { Name = x.Name, Id = x.Id })
+            return await _context.Categories.Where(x => x.isDelete == false)
+                .Select(x => new CategoryVm { Name = x.Name, Id = x.Id ,Description=x.Description})
                 .ToListAsync();
         }
 
@@ -65,6 +65,24 @@ namespace ServerSite.Controllers
             }
 
             category.Name = categoryVm.Name;
+            category.Description = categoryVm.Description;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpPut("{CategoryId}")]
+        [Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> DeleteCategory(int CategoryId)
+        {
+            var category = await _context.Categories.FindAsync(CategoryId);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            category.isDelete = true;
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -78,6 +96,7 @@ namespace ServerSite.Controllers
             var category = new Category
             {
                 Name = categoryVm.Name,
+                Description=categoryVm.Description
             };
 
             _context.Categories.Add(category);
