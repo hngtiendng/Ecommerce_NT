@@ -26,7 +26,7 @@ namespace ServerSite.Controllers
         public async Task<ActionResult<IEnumerable<CategoryVm>>> GetAllCategory()
         {
             return await _context.Categories
-                .Select(x => new CategoryVm { Name = x.Name,Id=x.Id })
+                .Select(x => new CategoryVm { Name = x.Name, Id = x.Id })
                 .ToListAsync();
         }
 
@@ -52,7 +52,7 @@ namespace ServerSite.Controllers
         }
 
         [HttpPut]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [AllowAnonymous]
         public async Task<IActionResult> UpdateCategory(CategoryVm categoryVm)
         {
@@ -71,7 +71,7 @@ namespace ServerSite.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [AllowAnonymous]
         public async Task<ActionResult<CategoryVm>> CreateCategory(CategoryVm categoryVm)
         {
@@ -83,26 +83,26 @@ namespace ServerSite.Controllers
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Get", new { id = category.Id }, 
+            return CreatedAtAction("Get", new { id = category.Id },
                 new CategoryVm { Id = category.Id, Name = category.Name });
         }
 
-        [HttpDelete("{id}")]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
-        public async Task<IActionResult> DeleteCategory(int id)
-        {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        ////[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> DeleteCategory(int id)
+        //{
+        //    var category = await _context.Categories.FindAsync(id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+        //    _context.Categories.Remove(category);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
     }
 }

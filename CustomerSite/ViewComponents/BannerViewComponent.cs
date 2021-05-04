@@ -12,7 +12,6 @@ namespace CustomerSite.ViewComponents
         {
             _bannerApiClient = bannerApiClient;
         }
-
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var banners = await _bannerApiClient.GetAllBanner();

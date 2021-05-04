@@ -1,13 +1,8 @@
 ﻿using CustomerSite.Services.Interfaces;
-using SharedVm;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using SharedVm;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -15,30 +10,31 @@ using System.Threading.Tasks;
 
 namespace CustomerSite.Services.Apis
 {
-    public class RateApiClient: IRateApiClient
+    public class RateApiClient : IRateApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
-        public RateApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        private readonly IRequest _request;
+        public RateApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration, IRequest request)
         {
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
+            _request = request;
         }
         public async Task<RateVm> CreateRate(RateVm rateVm)
         {
-        
-            var client = _httpClientFactory.CreateClient();
+            //var client = _httpClientFactory.CreateClient();
+            var client = _request.SendAccessToken().Result;
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(rateVm),
                 Encoding.UTF8, "application/json");
             var response = await client.PostAsync(_configuration["BackendUrl:Default"] + "/api/Rate", httpContent);
-
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<RateVm>();
         }
         public async Task<RateVm> GetRateByProduct(int productId)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync(_configuration["BackendUrl:Default"] + "/api/Rate/"+ productId);
+            var response = await client.GetAsync(_configuration["BackendUrl:Default"] + "/api/Rate/" + productId);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<RateVm>();
         }

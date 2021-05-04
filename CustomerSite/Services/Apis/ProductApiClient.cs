@@ -12,13 +12,11 @@ namespace CustomerSite.Services.Apis
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
-
         public ProductApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
         }
-
         public async Task<IList<ProductVm>> GetAllProduct()
         {
             var client = _httpClientFactory.CreateClient();
@@ -26,7 +24,6 @@ namespace CustomerSite.Services.Apis
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<IList<ProductVm>>();
         }
-
         public async Task<ProductVm> GetProductById(int id)
         {
             var client = _httpClientFactory.CreateClient();
@@ -38,7 +35,6 @@ namespace CustomerSite.Services.Apis
         {
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync(_configuration["BackendUrl:Default"] + "/api/product/getByCategoryId/" + idCategory);
-           
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<IList<ProductVm>>();
         }

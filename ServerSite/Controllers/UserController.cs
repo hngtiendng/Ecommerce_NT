@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServerSite.Data;
 using SharedVm;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -14,7 +13,7 @@ namespace ServerSite.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize("Bearer")]
-    public class UserController:Controller
+    public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
 
@@ -24,7 +23,7 @@ namespace ServerSite.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles ="admin")]
         public async Task<ActionResult<IEnumerable<UserVm>>> GetUsers()
         {
             var List = await _context.Users.ToListAsync();

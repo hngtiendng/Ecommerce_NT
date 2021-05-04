@@ -1,8 +1,7 @@
 ﻿using IdentityServer4;
 using IdentityServer4.Models;
-using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
-using System.Configuration;
+using System.Collections.Generic;
 
 namespace ServerSite.IdentityServer
 {
@@ -95,7 +94,7 @@ namespace ServerSite.IdentityServer
                 {
                     ClientId = "react-admin",
                     AllowedGrantTypes = GrantTypes.Implicit,
-                    
+
                     RedirectUris = { _configuration["AdminSiteUrl:Default"] +"/signin-oidc" },
                     PostLogoutRedirectUris = { _configuration["AdminSiteUrl:Default"] +"/signout-oidc" },
                     AllowedCorsOrigins={_configuration["AdminSiteUrl:Default"] },

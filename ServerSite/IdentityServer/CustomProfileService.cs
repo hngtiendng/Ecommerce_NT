@@ -47,7 +47,7 @@ namespace ServerSite.IdentityServer
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(CultureInfo.InvariantCulture)),
                     new Claim(JwtClaimTypes.Name, user.Email),
                     new Claim(JwtClaimTypes.Email, user.Email),
-                    
+
                 };
 
                 var userRoles = await _userManager.GetRolesAsync(user);

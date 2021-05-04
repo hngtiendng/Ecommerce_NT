@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import { post_images } from "../../actions/images";
 import { useSelector, useDispatch } from "react-redux";
 import { get_category_list } from "../../actions/category";
 import { create_product, get_product_list } from "../../actions/product";
 import { Link } from "react-router-dom";
-const CreateProduct = (props) => {
+const CreateProduct = () => {
   useEffect(() => {
     dispatch(get_category_list());
     dispatch(get_product_list());
@@ -16,39 +15,37 @@ const CreateProduct = (props) => {
   const dispatch = useDispatch();
 
   const { categoryList } = useSelector((state) => state.category);
-  const { productList } = useSelector((state) => state.product);
 
   var list_category = categoryList.data;
-  const PreviewImages=()=> {
+  const PreviewImages = () => {
     var divImage = document.getElementById("preview");
-    divImage.innerHTML = '';
+    divImage.innerHTML = "";
     let images = document.getElementById("images").files;
     if (images) {
-        for (let i = 0; i < images.length; i++) {
-            var image = document.createElement("img");
-            var spanImg = document.createElement("span");
-            var spanPlus = document.createElement("span");
+      for (let i = 0; i < images.length; i++) {
+        var image = document.createElement("img");
+        var spanImg = document.createElement("span");
+        var spanPlus = document.createElement("span");
 
-            //Set style
-            spanImg.style.cssText = 'position: relative ';
-            spanPlus.style.cssText = 'position: absolute; right: 10px';
-            image.style.cssText = 'width: 75px; height: 75px';
+        //Set style
+        spanImg.style.cssText = "position: relative ";
+        spanPlus.style.cssText = "position: absolute; right: 10px";
+        image.style.cssText = "width: 75px; height: 75px";
 
-            //Set class
-            spanPlus.className = 'badge badge-pill badge-success';
-            image.className = "mr-3 mb-2";
+        //Set class
+        spanPlus.className = "badge badge-pill badge-success";
+        image.className = "mr-3 mb-2";
 
-            //Set data
-            image.src = URL.createObjectURL(images[i]);
-           
+        //Set data
+        image.src = URL.createObjectURL(images[i]);
 
-            //Return
-            divImage.appendChild(spanImg);
-            spanImg.appendChild(image);
-            spanImg.appendChild(spanPlus);
-        }
+        //Return
+        divImage.appendChild(spanImg);
+        spanImg.appendChild(image);
+        spanImg.appendChild(spanPlus);
+      }
     }
-}
+  };
 
   const CreateProduct = async () => {
     //Set image list
@@ -64,7 +61,7 @@ const CreateProduct = (props) => {
     formData.append("Description", product.description);
     formData.append("Price", product.price);
     formData.append("CategoryId", product.categoryId);
-    await dispatch(create_product(formData));
+    dispatch(create_product(formData));
   };
 
   return (
@@ -126,7 +123,13 @@ const CreateProduct = (props) => {
 
         <FormGroup>
           <Label for="exampleFile">File</Label>
-          <Input type="file" multiple name="file" id="images" onChange={()=>PreviewImages()} />
+          <Input
+            type="file"
+            multiple
+            name="file"
+            id="images"
+            onChange={() => PreviewImages()}
+          />
           <FormText color="muted">
             This is some placeholder block-level help text for the above input.
             It's a bit lighter and easily wraps to a new line.
@@ -136,17 +139,17 @@ const CreateProduct = (props) => {
           <Label for="preview">File</Label>
           <div id="preview"></div>
         </FormGroup>
-        
       </Form>
-      {/* <Link to='/product'> </Link> */}
-      <Button
-        color="success"
-        onClick={() => {
-          CreateProduct();
-        }}
-      >
-        Create
-      </Button>
+      <Link to="/product">
+        <Button
+          color="success"
+          onClick={() => {
+            CreateProduct();
+          }}
+        >
+          Create
+        </Button>{" "}
+      </Link>
     </div>
   );
 };

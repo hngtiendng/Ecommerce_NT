@@ -12,10 +12,9 @@ export default function Category() {
 
   var list_category = categoryList.data;
 
-
   return (
     <Fragment>
-      <CategoryList list={list_category}/>
+      <CategoryList list={list_category} />
     </Fragment>
   );
 }

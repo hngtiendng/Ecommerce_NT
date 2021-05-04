@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SharedVm;
-using System;
+﻿using SharedVm;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CustomerSite.Services.Interfaces
@@ -11,5 +8,7 @@ namespace CustomerSite.Services.Interfaces
     {
         Task<IList<OrderVm>> GetOrderByUser(string userId);
         Task<OrderVm> CreateOrder(string userId, List<OrderDetailVm> orderDetailVm1);
+        Task<OrderVm> DeleteOrder(int id);
+        Task<OrderVm> GetOrderDetail(int Id);
     }
 }

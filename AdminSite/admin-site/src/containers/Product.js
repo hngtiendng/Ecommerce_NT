@@ -12,10 +12,9 @@ export default function Product() {
 
   var list_product = productList.data;
 
-
   return (
     <Fragment>
-      <ProductList list={list_product}/>
+      <ProductList list={list_product} />
     </Fragment>
   );
 }

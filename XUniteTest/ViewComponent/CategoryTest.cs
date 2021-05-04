@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CustomerSite.Services.Interfaces;
+using CustomerSite.ViewComponents;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Moq;
+using SharedVm;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CustomerSite.Services;
-using CustomerSite.ViewComponents;
-using SharedVm;
 using Xunit;
-using CustomerSite.Services.Interfaces;
 
 namespace XUniteTest.ViewComponent
 {

@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ServerSite.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +10,7 @@ namespace ServerSite.Data
         public static async Task SeedEssentialsAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             //Seed Roles
-            
+
             if (!roleManager.RoleExistsAsync("admin").Result)
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
@@ -45,9 +43,9 @@ namespace ServerSite.Data
                 IdentityResult result = await userManager.CreateAsync(admin, "Admin123!");
                 if (result.Succeeded)
                 {
-                    
+
                     await userManager.AddToRoleAsync(admin, "admin");
-                    
+
                 }
                 IdentityResult result1 = await userManager.CreateAsync(user, "User123!");
                 if (result1.Succeeded)

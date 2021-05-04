@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SharedVm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using SharedVm;
 using System.Threading.Tasks;
 
 namespace CustomerSite.Services.Interfaces
@@ -11,8 +7,8 @@ namespace CustomerSite.Services.Interfaces
     {
         Task<CartVm> CreateCart(CartVm cartVm);
         Task<CartVm> GetCartByUser(string userId);
-        Task<CartVm> AddCartItem(string userId, int productId,int quantity);
-        Task<CartVm> RemoveItem(string userId, int productId);
-        Task<CartVm> clearCart(string userId);
+        Task<CartVm> AddCartItem(string userId, int productId, int quantity);
+        //Task<CartVm> RemoveItem(string userId, int productId);
+        Task<CartVm> ClearCart(string userId);
     }
 }

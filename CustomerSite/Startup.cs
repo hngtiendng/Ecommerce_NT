@@ -42,7 +42,7 @@ namespace CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44309/";
+                    options.Authority = Configuration["BackendUrl:Default"];
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
@@ -70,7 +70,7 @@ namespace CustomerSite
             services.AddTransient<IOrderApiClient, OrderApiClient>();
             services.AddTransient<ICartApiClient, CartApiClient>();
             services.AddTransient<IRequest, Request>();
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();  
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
         }
 

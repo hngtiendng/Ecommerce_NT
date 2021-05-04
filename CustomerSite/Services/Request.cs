@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CustomerSite.Services
 {
-    public class Request:IRequest
+    public class Request : IRequest
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IHttpContextAccessor _httpContextAccessor;

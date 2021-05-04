@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
-import {
-  Table,
-  Button,
-  
-} from "reactstrap";
-import {Link } from 'react-router-dom'
-console.log(process.env.REACT_APP_ADMIN)
+import React from "react";
+import { Table, Button } from "reactstrap";
+import { Link } from "react-router-dom";
+console.log(process.env.REACT_APP_ADMIN);
 export default function ProductList(props) {
   return (
     <Table class="table">
@@ -17,11 +13,10 @@ export default function ProductList(props) {
           <th scope="col">Image</th>
           <th scope="col">Option</th>
           <th scope="col">
-            <Link to='/createProduct'><Button color="success">
-              Create
-            </Button></Link>
+            <Link to="/createProduct">
+              <Button color="success">Create</Button>
+            </Link>
           </th>
-          
         </tr>
       </thead>
       <tbody>
@@ -40,8 +35,9 @@ export default function ProductList(props) {
                   />
                 </td>
                 <td>
-                  <Link to={`updateProduct/${item.id}`}><Button color="info">Update</Button></Link>
-                  
+                  <Link to={`updateProduct/${item.id}`}>
+                    <Button color="info">Update</Button>
+                  </Link>
                 </td>
               </tr>
             );

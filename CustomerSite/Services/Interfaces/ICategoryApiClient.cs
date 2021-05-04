@@ -7,6 +7,5 @@ namespace CustomerSite.Services.Interfaces
     public interface ICategoryApiClient
     {
         Task<IList<CategoryVm>> GetAllCategory();
-
     }
 }

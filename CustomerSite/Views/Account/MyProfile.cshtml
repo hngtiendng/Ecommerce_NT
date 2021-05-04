@@ -1,13 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Authentication
 @using Microsoft.Extensions.Configuration
-
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    var ServerUrl = @Configuration.GetSection("BackendUrl")["Default"];
+}
 @inject IConfiguration Configuration
 
 @{
     ViewData["Title"] = "My profile";
 }
 
-<h2><a href="https://localhost:44309/Identity/Account/Manage">My Account</a></h2>
+<h2><a href=@ServerUrl+"/Identity/Account/Manage">My Account</a></h2>
 <br />
 <br />
 

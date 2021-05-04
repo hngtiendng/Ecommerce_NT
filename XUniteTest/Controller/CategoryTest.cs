@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using ServerSite.Controllers;
+using ServerSite.Data;
 using ServerSite.Models;
 using SharedVm;
-using ServerSite.Data;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace XUniteTest.Controller
 {
-    public class CategoryTest:IDisposable
+    public class CategoryTest : IDisposable
     {
         private readonly SqliteConnection _connection;
         private readonly ApplicationDbContext _dbContext;
@@ -35,8 +35,8 @@ namespace XUniteTest.Controller
         {
             var category = new CategoryVm
             {
-                Name="Watch"
-                        
+                Name = "Watch"
+
             };
 
             var controller = new CategoryController(_dbContext);
@@ -45,7 +45,7 @@ namespace XUniteTest.Controller
             var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
             var returnValue = Assert.IsType<CategoryVm>(createdAtActionResult.Value);
             Assert.Equal("Watch", returnValue.Name);
-            
+
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace XUniteTest.Controller
         {
             _dbContext.Categories.Add(new Category
             {
-                Name="watch"
+                Name = "watch"
             });
             await _dbContext.SaveChangesAsync();
 

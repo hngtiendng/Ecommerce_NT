@@ -44,7 +44,7 @@ namespace ServerSite.Controllers
                 ProductVm productVm = new()
                 {
 
-                   
+
                     CategoryId = product.CategoryId,
                     Description = product.Description,
                     Id = product.Id,
@@ -67,7 +67,7 @@ namespace ServerSite.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<ProductVm>> GetProductById(int id)
         {
-                var product = await _context.Products.Include(p => p.Images).Include(p=>p.Rates).FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _context.Products.Include(p => p.Images).Include(p => p.Rates).FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null)
             {
@@ -78,7 +78,7 @@ namespace ServerSite.Controllers
             {
                 Name = product.Name,
                 Id = product.Id,
-              
+
                 CategoryId = product.CategoryId,
                 Description = product.Description,
                 Inventory = product.Inventory,
@@ -94,12 +94,13 @@ namespace ServerSite.Controllers
             {
                 productVm.AverageStar = 0;
             }
-            else { 
-            foreach (var y in product.Rates)
+            else
             {
-                temp += y.Star;
-            }
-            productVm.AverageStar = temp / product.Rates.Count();
+                foreach (var y in product.Rates)
+                {
+                    temp += y.Star;
+                }
+                productVm.AverageStar = temp / product.Rates.Count;
             }
             return productVm;
         }
@@ -114,7 +115,7 @@ namespace ServerSite.Controllers
                 ProductVm productVm = new()
                 {
 
-                   
+
                     CategoryId = product.CategoryId,
                     Description = product.Description,
                     Id = product.Id,
@@ -132,8 +133,8 @@ namespace ServerSite.Controllers
             return productListVm;
         }
         [HttpPut]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
+        //[AllowAnonymous]
         public async Task<IActionResult> UpdateProduct(ProductVm productVm)
         {
             var id = productVm.Id;
@@ -145,7 +146,7 @@ namespace ServerSite.Controllers
             }
 
             product.Name = productVm.Name;
-            
+
             product.CategoryId = productVm.CategoryId;
             product.Description = productVm.Description;
             product.Inventory = productVm.Inventory;
@@ -164,7 +165,7 @@ namespace ServerSite.Controllers
             {
                 Name = productFormVm.Name,
                 //Id = productVm.Id,
-                
+
                 CategoryId = productFormVm.CategoryId,
                 Description = productFormVm.Description,
                 Inventory = productFormVm.Inventory,
@@ -186,9 +187,9 @@ namespace ServerSite.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    Image nFile = new Image();
+                    Image nFile = new ();
                     nFile.ImagePath = $"/images/{fileName}";
-                   
+
                     nFile.ProductId = product.Id;
 
                     _context.Images.Add(nFile);
@@ -201,28 +202,28 @@ namespace ServerSite.Controllers
                 AverageStar = product.AverageStar,
                 CategoryId = product.CategoryId,
                 Description = product.Description,
-               
+
                 Inventory = product.Inventory,
                 Price = product.Price,
             });
         }
 
-        [HttpDelete("{id}")]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
-        public async Task<IActionResult> DeleteProduct(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        ////[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> DeleteProduct(int id)
+        //{
+        //    var product = await _context.Products.FindAsync(id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+        //    _context.Products.Remove(product);
+        //    await _context.SaveChangesAsync();
 
-            return Accepted();
-        }
+        //    return Accepted();
+        //}
 
     }
 }

@@ -13,10 +13,10 @@ import UpdateProduct from "./components/Product/update";
 import { Container, Row } from "reactstrap";
 import CreateCategory from "./components/Category/create.js";
 import UpdateCategory from "./components/Category/update.js";
-import Logout from './components/Logout/Logout';
-import LogoutCallBack from './components/Logout/LogoutCallBack';
-import axios from 'axios'
-require('dotenv').config()
+import Logout from "./components/Logout/Logout";
+import LogoutCallBack from "./components/Logout/LogoutCallBack";
+import axios from "axios";
+require("dotenv").config();
 export default function App() {
   const config = {
     userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
@@ -27,20 +27,22 @@ export default function App() {
     scope: "openid profile rookieshop.api",
   };
   var userManager = new Oidc.UserManager(config);
-  userManager.getUser().then(user => {
+  userManager.getUser().then((user) => {
     if (user) {
-      localStorage.setItem("user", user.profile.role)
-      axios.defaults.headers.common["Authorization"] = "Bearer " + user.access_token
+      localStorage.setItem("user", user.profile.role);
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + user.access_token;
     }
-  })
-  var user = localStorage.getItem("user")
-  console.log(user)
+  });
+  var user = localStorage.getItem("user");
+  console.log(user);
   if (user != "admin") {
-
     return (
       <Router>
         <Switch>
-          <Route exact path="/"><Login userManager={userManager}></Login></Route>
+          <Route exact path="/">
+            <Login userManager={userManager}></Login>
+          </Route>
           <Route exact path="/signin-oidc" component={LoginCallback}></Route>
         </Switch>
       </Router>
@@ -55,9 +57,9 @@ export default function App() {
         <br />
         <Row>
           <Switch>
-          <Route exact path="/signin-oidc" component={LoginCallback}></Route>
+            <Route exact path="/signin-oidc" component={LoginCallback}></Route>
             <Route exact path="/">
-              <Product/>
+              <Product />
             </Route>
             <Route exact path="/category">
               <Category />
@@ -68,7 +70,7 @@ export default function App() {
             <Route exact path="/createProduct">
               <CreateProduct />
             </Route>
-            
+
             <Route exact path="/createCategory">
               <CreateCategory />
             </Route>
@@ -77,14 +79,20 @@ export default function App() {
               path={["/updateCategory", "/updateCategory/:id"]}
               render={({ match }) => <UpdateCategory match={match} />}
             ></Route>
-            
+
             <Route
               exact
               path={["/updateProduct", "/updateProduct/:id"]}
               render={({ match }) => <UpdateProduct match={match} />}
             />
-                      <Route exact path="/logout" ><Logout userManager={userManager}></Logout></Route>
-          <Route exact path="/signout-oidc" component={LogoutCallBack}></Route>
+            <Route exact path="/logout">
+              <Logout userManager={userManager}></Logout>
+            </Route>
+            <Route
+              exact
+              path="/signout-oidc"
+              component={LogoutCallBack}
+            ></Route>
           </Switch>
         </Row>
       </Container>

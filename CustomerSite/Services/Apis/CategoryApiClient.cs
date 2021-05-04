@@ -18,7 +18,6 @@ namespace CustomerSite.Services.Apis
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
         }
-
         public async Task<IList<CategoryVm>> GetAllCategory()
         {
             var client = _httpClientFactory.CreateClient();

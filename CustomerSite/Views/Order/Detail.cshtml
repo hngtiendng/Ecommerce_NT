@@ -1,0 +1,15 @@
+﻿@model SharedVm.OrderVm
+@{
+    ViewData["Title"] = "Order Detail";
+}
+<h1>@Model.Id</h1>
+<ul class="list-group">
+    @foreach (var i in Model.orderDetailVms)
+    {
+        <li class="list-group-item">ProductId : @i.ProductId</li>
+        <li class="list-group-item">Quantity : @i.Quantity</li>
+        <li class="list-group-item">UnitPrice : @i.UnitPrice</li>
+        <hr />
+    }
+
+</ul>

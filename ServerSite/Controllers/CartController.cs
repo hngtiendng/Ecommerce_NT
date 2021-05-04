@@ -6,7 +6,6 @@ using ServerSite.Models;
 using SharedVm;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ServerSite.Controllers
@@ -21,99 +20,99 @@ namespace ServerSite.Controllers
         {
             _context = context;
         }
-        [HttpGet]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<CartVm>>> GetAllCart()
-        {
+        //[HttpGet]
+        ////[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        //public async Task<ActionResult<IEnumerable<CartVm>>> GetAllCart()
+        //{
 
-            var lstCartItem = new List<CartItem>();
-            var lstCartItemVm = new List<CartItemVm>();
-            var lstImage = new List<string>();
-            foreach (var x in _context.Carts.Select(x => x.CartItems))
-            {
-                lstCartItem = x.ToList();
-            }
-            var cartItemVm = new CartItemVm();
-            var lstProductVm = new List<ProductVm>();
-            foreach (var x in lstCartItem)
-            {
-                x.Product = new Product();
+        //    var lstCartItem = new List<CartItem>();
+        //    var lstCartItemVm = new List<CartItemVm>();
+        //    var lstImage = new List<string>();
+        //    foreach (var x in _context.Carts.Select(x => x.CartItems))
+        //    {
+        //        lstCartItem = x.ToList();
+        //    }
+        //    var cartItemVm = new CartItemVm();
+        //    var lstProductVm = new List<ProductVm>();
+        //    foreach (var x in lstCartItem)
+        //    {
+        //        x.Product = new Product();
 
-                var c = new ProductVm
-                {
-
-
-                    CategoryId = x.Product.CategoryId,
-
-                    Description = x.Product.Description,
-                    Id = x.Id,
-
-                    Inventory = x.Product.Inventory,
-                    Name = x.Product.Name,
-                    Price = x.Product.Price,
-
-                };
-
-                cartItemVm.productVm = new ProductVm();
-                cartItemVm.productVm = c;
-                lstCartItemVm.Add(cartItemVm);
-            }
-
-            var cartVm = await _context.Carts
-                           .Select(x => new CartVm { Id = x.Id, TotalPrice = x.TotalPrice, UserId = x.UserId, cartItemVms = lstCartItemVm })
-                           .ToListAsync();
-            return cartVm;
-        }
+        //        var c = new ProductVm
+        //        {
 
 
-        [HttpGet("{id}")]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
-        public async Task<ActionResult<CartVm>> GetCartById(int id)
-        {
-            var cart = await _context.Carts.FindAsync(id);
+        //            CategoryId = x.Product.CategoryId,
 
-            if (cart == null)
-            {
-                return NotFound();
-            }
+        //            Description = x.Product.Description,
+        //            Id = x.Id,
 
-            var lstProduct = cart.CartItems.ToList();
-            var lstImage = new List<string>();
-            var cartItemVms = new List<CartItemVm>();
-            var cartItemVm = new CartItemVm();
-            foreach (var x in lstProduct)
-            {
+        //            Inventory = x.Product.Inventory,
+        //            Name = x.Product.Name,
+        //            Price = x.Product.Price,
 
-                var c = new ProductVm
-                {
+        //        };
+
+        //        cartItemVm.productVm = new ProductVm();
+        //        cartItemVm.productVm = c;
+        //        lstCartItemVm.Add(cartItemVm);
+        //    }
+
+        //    var cartVm = await _context.Carts
+        //                   .Select(x => new CartVm { Id = x.Id, TotalPrice = x.TotalPrice, UserId = x.UserId, cartItemVms = lstCartItemVm })
+        //                   .ToListAsync();
+        //    return cartVm;
+        //}
 
 
-                    CategoryId = x.Product.CategoryId,
+        //[HttpGet("{id}")]
+        ////[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        //public async Task<ActionResult<CartVm>> GetCartById(int id)
+        //{
+        //    var cart = await _context.Carts.FindAsync(id);
 
-                    Description = x.Product.Description,
-                    Id = x.Id,
+        //    if (cart == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-                    Inventory = x.Product.Inventory,
-                    Name = x.Product.Name,
-                    Price = x.Product.Price,
+        //    var lstProduct = cart.CartItems.ToList();
+        //    var lstImage = new List<string>();
+        //    var cartItemVms = new List<CartItemVm>();
+        //    var cartItemVm = new CartItemVm();
+        //    foreach (var x in lstProduct)
+        //    {
 
-                };
-                foreach (var y in c.ImageLocation)
-                {
-                    lstImage.Add(y);
-                }
+        //        var c = new ProductVm
+        //        {
 
-                c.ImageLocation = lstImage;
-                cartItemVm.productVm = c;
-                cartItemVms.Add(cartItemVm);
 
-            }
+        //            CategoryId = x.Product.CategoryId,
 
-            var cartVm = new CartVm { Id = cart.Id, TotalPrice = cart.TotalPrice, UserId = cart.UserId, cartItemVms = cartItemVms };
-            return cartVm;
-        }
+        //            Description = x.Product.Description,
+        //            Id = x.Id,
+
+        //            Inventory = x.Product.Inventory,
+        //            Name = x.Product.Name,
+        //            Price = x.Product.Price,
+
+        //        };
+        //        foreach (var y in c.ImageLocation)
+        //        {
+        //            lstImage.Add(y);
+        //        }
+
+        //        c.ImageLocation = lstImage;
+        //        cartItemVm.productVm = c;
+        //        cartItemVms.Add(cartItemVm);
+
+        //    }
+
+        //    var cartVm = new CartVm { Id = cart.Id, TotalPrice = cart.TotalPrice, UserId = cart.UserId, cartItemVms = cartItemVms };
+        //    return cartVm;
+        //}
 
         [HttpGet("getCartByUser/{userId}")]
         //[Authorize(Roles = "user")]
@@ -142,16 +141,16 @@ namespace ServerSite.Controllers
                 c = new ProductVm
                 {
 
-                    
+
                     CategoryId = x.Product.CategoryId,
-                    
+
                     Description = x.Product.Description,
                     Id = x.Product.Id,
 
                     Inventory = x.Product.Inventory,
                     Name = x.Product.Name,
                     Price = x.Product.Price,
-                    
+
                 };
                 foreach (var y in x.Product.Images.ToList())
                 {
@@ -179,16 +178,16 @@ namespace ServerSite.Controllers
             {
                 var pVm = new CartItem();
 
-                
+
                 pVm.Product.CategoryId = x.productVm.CategoryId;
-               
+
                 pVm.Product.Description = x.productVm.Description;
                 pVm.Product.Id = x.Id;
 
                 pVm.Product.Inventory = x.productVm.Inventory;
                 pVm.Product.Name = x.productVm.Name;
                 pVm.Product.Price = x.productVm.Price;
-               
+
                 lstProducts.Add(pVm);
             }
             var cart = new Cart
@@ -216,19 +215,19 @@ namespace ServerSite.Controllers
         [HttpPut("addCartItem/{userId}/{productId}/{quantity}")]
         //[Authorize(Roles = "user")]
         [AllowAnonymous]
-        public async Task<ActionResult<CartVm>> AddCartItem(string userId, int productId,int quantity)
+        public async Task<ActionResult<CartVm>> AddCartItem(string userId, int productId, int quantity)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == productId);
-            
+
             var cart = await _context.Carts.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefaultAsync(x => x.UserId == userId);
             var cartItem = new CartItem
             {
                 Product = product,
-                Quantity=quantity,
-                
+                Quantity = quantity,
+
             };
 
-            
+
             if (cart == null)
             {
                 return NotFound();
@@ -245,38 +244,38 @@ namespace ServerSite.Controllers
             });
 
         }
-        [HttpPut("removeItem/{userId}/{productId}")]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
-        public async Task<IActionResult> RemoveItem(string userId, int productId)
-        {
-            var cart = await _context.Carts.Include(c=>c.CartItems).FirstOrDefaultAsync(x => x.UserId == userId);
-            foreach (CartItem p in cart.CartItems)
-            {
-                if (p.Id == productId)
-                {
-                    cart.CartItems.Remove(p);
-                    await _context.SaveChangesAsync();
-                }
-            }
-            if (cart == null)
-            {
-                return NotFound();
-            }
-            await _context.SaveChangesAsync();
+        //[HttpPut("removeItem/{userId}/{productId}")]
+        ////[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> RemoveItem(string userId, int productId)
+        //{
+        //    var cart = await _context.Carts.Include(c=>c.CartItems).FirstOrDefaultAsync(x => x.UserId == userId);
+        //    foreach (CartItem p in cart.CartItems)
+        //    {
+        //        if (p.Id == productId)
+        //        {
+        //            cart.CartItems.Remove(p);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //    }
+        //    if (cart == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Get", new { id = cart.Id }, new CartVm
-            {
-                Id = cart.Id,
-                UserId = cart.UserId,
-                TotalPrice = cart.TotalPrice,
+        //    return CreatedAtAction("Get", new { id = cart.Id }, new CartVm
+        //    {
+        //        Id = cart.Id,
+        //        UserId = cart.UserId,
+        //        TotalPrice = cart.TotalPrice,
 
-            });
-        }
+        //    });
+        //}
         [HttpPut("clearCart/{userId}")]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
-        public async Task<IActionResult> clearCart(string userId)
+        [Authorize(Roles = "user")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> ClearCart(string userId)
         {
             var cart = await _context.Carts.Include(c => c.CartItems).FirstOrDefaultAsync(x => x.UserId == userId);
             cart.CartItems.Clear();

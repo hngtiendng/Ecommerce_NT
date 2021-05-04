@@ -61,7 +61,7 @@ namespace ServerSite
                 .AddLocalApi("Bearer", option =>
                 {
                     option.ExpectedScope = "rookieshop.api";
-               
+
                 });
 
             services.AddAuthorization(options =>
@@ -115,10 +115,11 @@ namespace ServerSite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var AdminUrl = Configuration.GetSection("AdminSiteUrl:Default").Value;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
+                app.UseMigrationsEndPoint();    
                 app.UseMigrationsEndPoint();
             }
             else
@@ -132,8 +133,8 @@ namespace ServerSite
 
             app.UseRouting();
 
-            
-            app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+
+                app.UseCors(options => options.WithOrigins(AdminUrl).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseIdentityServer();
             app.UseAuthorization();

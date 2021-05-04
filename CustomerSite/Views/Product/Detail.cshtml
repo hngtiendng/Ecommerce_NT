@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    
+
     <div class="row">
         <h2>@Model.Name</h2>
     </div>
@@ -42,66 +42,65 @@
             <ul class="list-group">
                 <li class="list-group-item disabled"><h4>@Model.Description</h4></li>
 
-                <li class="list-group-item">@Model.Price</li>
+                <li class="list-group-item">Price : @Model.Price</li>
 
                 <li class="list-group-item">
+                    <label for="rateP">AVG Point : @Model.AverageStar  </label>
                     @{
                         for (int rate = 0; rate < Model.AverageStar; rate++)
                         {
-                            <span class="fas fa-star checked"></span>
+                            <span id="rateP" class="fas fa-star checked"></span>
                         }
                     }
                 </li>
+                <li class="list-group-item">
+                    <form action="" method="post">
 
-                <form action="" method="post">
+                        <fieldset class="rate">
 
-                    <li class="list-group-item">
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-light" onclick="Minus()" style="font-size:large">
-                                    -
-                                </button>
-                            </span>
-                            <input type="number" id="quantity" name="quantity" style="width:50px" value="1" min="1" max="100">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-light" onclick="Plus()" style="font-size:large">
-                                    +
-                                </button>
-                            </span>
-                        </div><br />
+                            <input type="radio" id="rating5" name="Star" value="5" /><label for="rating5" title="5 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="rating4" name="Star" value="4" /><label for="rating4" title="4 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="rating3" name="Star" value="3" /><label for="rating3" title="3 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="rating2" name="Star" value="2" /><label for="rating2" title="2 star"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="rating1" name="Star" value="1" /><label for="rating1" title="1 star"><i class="fas fa-star"></i></label>
 
-                        @{if (User.Identity.IsAuthenticated)
-                            {
-                                var userId = User.Claims.ElementAt(2).Value;
-                            <li class="list-group-item">
+                        </fieldset>
 
-                                <button typeof="submit" class="btn btn-success" asp-controller="Cart" asp-action="AddCartItem" asp-route-userId="@userId" asp-route-productId="@Model.Id">Thêm Vào Giỏ Hàng</button>
-                            </li>
-                        }
-                        else
-                        {
-                            <button typeof="submit" class="btn btn-success" asp-controller="Account" asp-action="SignIn" >Thêm Vào Giỏ Hàng</button>
-                        }}
-                        </li>
 
-                    </form>
-                    <form asp-controller="Rate" asp-action="CreateRate" method="post">
+
+
+                <li />
+
+
+
+                <li class="list-group-item">
+                    <div class="input-group">
+                        <label for="quantity">Quantity :    </label>
+                        <input type="number" id="quantity" name="quantity" style="width: 50px;margin-left:10px" value="1">
+                        <br /><br /<br />
+                    </div>
+                </li>
+
+                @{if (User.Identity.IsAuthenticated)
+                    {
+                        var userId = User.Claims.ElementAt(2).Value;
                         <li class="list-group-item">
-                            <fieldset class="rate">
 
-                                <input type="radio" id="rating5" name="Star" value="5" /><label for="rating5" title="5 stars"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="rating4" name="Star" value="4" /><label for="rating4" title="4 stars"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="rating3" name="Star" value="3" /><label for="rating3" title="3 stars"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="rating2" name="Star" value="2" /><label for="rating2" title="2 star"><i class="fas fa-star"></i></label>
-                                <input type="radio" id="rating1" name="Star" value="1" /><label for="rating1" title="1 star"><i class="fas fa-star"></i></label>
-                            </fieldset>
-                        <li />
-                        <li class="list-group-item">
-                            <input name="Id" value="@Model.Id" type="hidden" />
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Rate</button>
+                            <button typeof="submit" class="btn btn-success" asp-controller="Cart" asp-action="AddCartItem" asp-route-userId="@userId" asp-route-productId="@Model.Id">Thêm Vào Giỏ Hàng</button>
                         </li>
-                    </form>
-                </ul>
-            </div>
+                    }
+                    else
+                    {
+                        <li class="list-group-item">
+                            <button typeof="submit" class="btn btn-outline-success" asp-controller="Account" asp-action="SignIn">Thêm Vào Giỏ Hàng</button>
+                        </li>
+                    }}
+
+
+                </form>
+
+
+            </ul>
         </div>
     </div>
+</div>

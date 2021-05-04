@@ -1,14 +1,12 @@
-﻿@*<ul class="list-group">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>*@
+﻿
 @{
     ViewData["Title"] = "Home Page";
 }
-
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{ 
+    var ServerUrl = @Configuration.GetSection("BackendUrl")["Default"];
+}
 <table class="table">
     <tr>
         <th>Sản phẩm</th>
@@ -17,57 +15,37 @@
         <th style="text-align:center">Số lượng</th>
         <th>Xóa</th>
     </tr>
-    @*from DB *@
-    @{ if (User.Identity.IsAuthenticated)
-        {
-            @foreach (var item in Model)
-            {
-<tr>
-    @{
-        var imagePath = "https://localhost:44309" + @item.productVm.ImageLocation[0];
-    }
-    <td><img src=@imagePath alt=" Card image cap" width=180 height=100></td>
-    <td>@item.productVm.Name</td>
-    <td style="color:red">@item.productVm.Price</td>
-    <td style="text-align:center">@item.Quantity</td>
-    <td style="text-align:center">@item.productVm.Id</td>
-    <td>
-        <a asp-action="RemoveItem" asp-controller="Cart" asp-route-Id="@item.productVm.Id" class="badge badge-danger" style="width:50px">Xóa</a>
-    </td>
-</tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @{
+                var imagePath = ServerUrl + @item.productVm.ImageLocation[0];
             }
-            <tr>
-                <th colspan="2"></th>
-                <th style="text-align:center">Thành tiền:</th>
-                @{
-                    double totalPerPro = 0;
-                    double total = 0;
-                    foreach (var item in Model)
-                    {
-                        totalPerPro = item.Quantity * item.productVm.Price;
-                        total += totalPerPro;
-                    }
-                    <th style="color:red; text-align:center; font-size:20px"> $@total</th>
-                }
-                <th> <a class="btn btn-danger" asp-action="clearCart"  style="width:150px;">Thanh toán</a></th>
-            </tr>
-        }
-        else
-        {
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td><img src="@item.productVm.ImageLocation[0]" alt="Card image cap" width=180 height=100></td>
-                    <td>@item.productVm.Name</td>
-                    <td style="color:red">@item.productVm.Price</td>
-                    <td style="text-align:center">@item.Quantity</td>
-
-
-                </tr>
-            }
-
-        }
+            <td><img src=@imagePath alt=" Card image cap" width=180 height=100></td>
+            <td>@item.productVm.Name</td>
+            <td style="color:red">@item.productVm.Price</td>
+            <td style="text-align:center">@item.Quantity</td>
+            <td style="text-align:center">@item.productVm.Id</td>
+            <td>
+                <a asp-action="RemoveItem" asp-controller="Cart" asp-route-Id="@item.productVm.Id" class="badge badge-danger" style="width:50px">Xóa</a>
+            </td>
+        </tr>
     }
-
+    <tr>
+        <th colspan="2"></th>
+        <th style="text-align:center">Thành tiền:</th>
+        @{
+            double totalPerPro = 0;
+            double total = 0;
+            foreach (var item in Model)
+            {
+                totalPerPro = item.Quantity * item.productVm.Price;
+                total += totalPerPro;
+            }
+            <th style="color:red; text-align:center; font-size:20px"> $@total</th>
+        }
+        <th> <a class="btn btn-danger" asp-action="clearCart" style="width:150px;">Thanh toán</a></th>
+    </tr>
+    }
 
 </table>
