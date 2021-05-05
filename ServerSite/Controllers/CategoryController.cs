@@ -31,7 +31,6 @@ namespace ServerSite.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "admin")]
         [AllowAnonymous]
         public async Task<ActionResult<CategoryVm>> GetCategoryById(int id)
         {
@@ -72,7 +71,6 @@ namespace ServerSite.Controllers
         }
         [HttpPut("{CategoryId}")]
         [Authorize(Roles = "admin")]
-        //[AllowAnonymous]
         public async Task<IActionResult> DeleteCategory(int CategoryId)
         {
             var category = await _context.Categories.FindAsync(CategoryId);
@@ -105,23 +103,5 @@ namespace ServerSite.Controllers
             return CreatedAtAction("Get", new { id = category.Id },
                 new CategoryVm { Id = category.Id, Name = category.Name });
         }
-
-        //[HttpDelete("{id}")]
-        ////[Authorize(Roles = "admin")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> DeleteCategory(int id)
-        //{
-        //    var category = await _context.Categories.FindAsync(id);
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Categories.Remove(category);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-
     }
 }

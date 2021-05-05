@@ -8,7 +8,7 @@ import history from "../../utilities/history";
 const UpdateCategory = ({ match }) => {
   const { id } = match.params;
   const [category, setCategory] = useState({ id: id });
-  const postCategory = async () => {
+  const updateCategory = async () => {
     await dispatch(update_category(category));
     history.goBack();
     console.log(category);
@@ -44,7 +44,7 @@ const UpdateCategory = ({ match }) => {
       <Button
         color="success"
         onClick={() => {
-          postCategory();
+          updateCategory();
         }}
       >
         Update

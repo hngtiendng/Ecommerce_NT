@@ -23,6 +23,9 @@ export default (state = initialState, { type, payload }) => {
     case product.DELETE_PRODUCT: {
       return { ...state };
     }
+    case product.GET_PRODUCT: {
+      return { ...state };
+    }
     default:
       return state;
   }

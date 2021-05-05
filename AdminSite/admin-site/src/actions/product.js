@@ -4,7 +4,8 @@ import {
   CREATE_PRODUCT,
   PRODUCT_LIST,
   UPDATE_PRODUCT,
-  DELETE_PRODUCT
+  DELETE_PRODUCT,
+  GET_PRODUCT
 } from "../contains/product";
 export const get_product_list = () => async (dispatch) => {
   try {
@@ -12,6 +13,18 @@ export const get_product_list = () => async (dispatch) => {
 
     dispatch({
       type: PRODUCT_LIST,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const get_product = (id) => async (dispatch) => {
+  try {
+    const data = await api.Product.getProduct(id);
+
+    dispatch({
+      type: GET_PRODUCT,
       payload: data,
     });
   } catch (error) {

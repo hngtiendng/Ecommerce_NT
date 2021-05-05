@@ -29,7 +29,6 @@ namespace ServerSite.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "admin")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetAllProduct()
         {
@@ -65,7 +64,6 @@ namespace ServerSite.Controllers
             return productListVm;
         }
         [HttpGet("getProductByName/{name}")]
-        //[Authorize(Roles = "admin")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByName(string name)
         {
@@ -98,7 +96,6 @@ namespace ServerSite.Controllers
             return productListVm;
         }
         [HttpGet("{id}")]
-        //[Authorize(Roles = "admin")]
         [AllowAnonymous]
         public async Task<ActionResult<ProductVm>> GetProductById(int id)
         {
@@ -169,7 +166,6 @@ namespace ServerSite.Controllers
         }
         [HttpPut("updateProduct/")]
         [Authorize(Roles = "admin")]
-        //[AllowAnonymous]
         public async Task<IActionResult> UpdateProduct(ProductVm productVm)
         {
             var id = productVm.Id;
@@ -193,13 +189,11 @@ namespace ServerSite.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        //[AllowAnonymous]
         public async Task<ActionResult<ProductVm>> CreateProduct([FromForm] ProductFormVm productFormVm)
         {
             var product = new Product
             {
                 Name = productFormVm.Name,
-                //Id = productVm.Id,
                 CreateDate = Convert.ToDateTime(DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss")),
                 CategoryId = productFormVm.CategoryId,
                 Description = productFormVm.Description,
@@ -209,7 +203,6 @@ namespace ServerSite.Controllers
 
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
-            //Add image 
             if ((productFormVm.Images != null) && (productFormVm.Images.Count > 0))
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
@@ -242,26 +235,8 @@ namespace ServerSite.Controllers
                 Price = product.Price,
             });
         }
-
-        //[HttpDelete("{id}")]
-        ////[Authorize(Roles = "admin")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> DeleteProduct(int id)
-        //{
-        //    var product = await _context.Products.FindAsync(id);
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Products.Remove(product);
-        //    await _context.SaveChangesAsync();
-
-        //    return Accepted();
-        //}
         [HttpPut("{ProductId}")]
         [Authorize(Roles = "admin")]
-        //[AllowAnonymous]
         public async Task<IActionResult> DeleteProduct(int ProductId)
         {
             var product = await _context.Products.FindAsync(ProductId);

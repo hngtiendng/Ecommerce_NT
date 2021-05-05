@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { get_category_list } from "../../actions/category";
 import {
- 
+ get_product,
   get_product_list,
   update_product,
 } from "../../actions/product";
@@ -12,26 +12,31 @@ const UpdateProduct = ({ match }) => {
   useEffect(() => {
     dispatch(get_category_list());
     dispatch(get_product_list());
+    
     //checkVar();
   }, []);
   const { id } = match.params;
   console.log(id);
  
   const [product, setProduct] = useState({ id: id});
+  const [product1,setProduct1]=useState();
+
+
   const dispatch = useDispatch();
 
   const { categoryList } = useSelector((state) => state.category);
-t);
- 
+
   const putProduct = async () => {
     await dispatch(update_product(product));
     console.log(product);
     await history.goBack();
+    var product2=dispatch(get_product(id));
+    setProduct1(product2.data)
+    console.log(product2.data());
   };
   var list_category = categoryList.data;
-  const btnClick = () => {
+  const updateProduct = () => {
     return putProduct();
-    //postImage()
   };
 
   return (
@@ -90,12 +95,16 @@ t);
               })}
           </Input>
         </FormGroup>
+        <FormGroup>
+          {
 
+          }
+        </FormGroup>
       </Form>
       <Button
           color="success"
           onClick={() => {
-            btnClick();
+            updateProduct();
           }}
         >
           Update

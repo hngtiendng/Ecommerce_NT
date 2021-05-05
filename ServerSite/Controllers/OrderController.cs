@@ -22,25 +22,8 @@ namespace ServerSite.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public async Task<ActionResult<IEnumerable<OrderVm>>> GetAllOrder()
-        //{
-        //    return await _context.Orders.Include(o => o.OrderDetails)
-        //        .Select(x => new OrderVm
-        //        {
-        //            UserId = x.UserId,
-        //            CraeteDate = x.CraeteDate,
-        //            Id = x.Id,
-        //            Status = x.Status,
-        //            TotalPrice = x.TotalPrice
-        //        })
-        //        .ToListAsync();
-        //}
-
         [HttpGet("{id}")]
         [Authorize(Roles = "user")]
-        //[AllowAnonymous]
         public async Task<ActionResult<OrderVm>> GetOrderById(int id)
         {
             var order = await _context.Orders.Include(x => x.OrderDetails).FirstOrDefaultAsync(x => x.Id == id);
@@ -75,15 +58,10 @@ namespace ServerSite.Controllers
         }
         [HttpGet("getOrderByUser/{userId}")]
         [Authorize(Roles = "user")]
-        //[AllowAnonymous]
         public async Task<ActionResult<IEnumerable<OrderVm>>> GetOrderByUser(string userId)
         {
-            //var order = await _context.Orders.Include(o => o.OrderDetails).Where(x => x.UserId == userId)
-            //   .FirstOrDefaultAsync();
             var order1 = await _context.Orders.Include(o => o.OrderDetails).Where(x => x.UserId == userId)
                .ToListAsync();
-            //List<OrderVm> orderVms = new();
-
             List<OrderDetailVm> orderDetailVms = new();
             List<OrderVm> lstOrder = new();
             foreach (var order in order1)
@@ -111,35 +89,11 @@ namespace ServerSite.Controllers
                 };
                 lstOrder.Add(orderVm);
             }
-            //    orderVms.Add(orderVm);
-
-
             return lstOrder;
         }
-        //[HttpPut("{id}")]
-        ////[Authorize(Roles = "admin")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> UpdateOrder(int id, OrderVm orderVm)
-        //{
-        //    var order = await _context.Orders.FindAsync(id);
-
-        //    if (order == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    order.TotalPrice = orderVm.TotalPrice;
-        //    order.Status = orderVm.Status;
-        //    order.CraeteDate = orderVm.CraeteDate;
-
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
 
         [HttpPost("{userId}")]
         [Authorize(Roles = "user")]
-        //[AllowAnonymous]
         public async Task<ActionResult<OrderVm>> CreateOrder(string userId, List<OrderDetailVm> orderDetailVm1)
         {
 
@@ -165,8 +119,6 @@ namespace ServerSite.Controllers
                 _context.OrderDetails.Add(oddt);
                 await _context.SaveChangesAsync();
             }
-
-            //await _context.Orders.FindAsync(Orders);
             return CreatedAtAction("Get", new { id = Orders.Id }, new OrderVm
             {
                 UserId = userId
@@ -175,7 +127,6 @@ namespace ServerSite.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "user")]
-        //[AllowAnonymous]
         public async Task<ActionResult> DeleteOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);

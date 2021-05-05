@@ -8,7 +8,6 @@ const CreateProduct = () => {
   useEffect(() => {
     dispatch(get_category_list());
     dispatch(get_product_list());
-    //checkVar();
   }, []);
 
   const [product, setProduct] = useState({});
@@ -142,13 +141,13 @@ const CreateProduct = () => {
         </FormGroup>
       </Form>
       <Button
-          color="success"
-          onClick={() => {
-            CreateProduct();
-          }}
-        >
-          Create
-        </Button>{" "}
+        color="success"
+        onClick={() => {
+          CreateProduct();
+        }}
+      >
+        Create
+      </Button>{" "}
     </div>
   );
 };

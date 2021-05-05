@@ -23,7 +23,6 @@ namespace CustomerSite.Services.Apis
         }
         public async Task<RateVm> CreateRate(RateVm rateVm)
         {
-            //var client = _httpClientFactory.CreateClient();
             var client = _request.SendAccessToken().Result;
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(rateVm),
                 Encoding.UTF8, "application/json");
