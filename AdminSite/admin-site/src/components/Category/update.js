@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useDispatch } from "react-redux";
 import { update_category } from "../../actions/category";
 import history from "../../utilities/history";
-import { Link } from "react-router-dom";
+
 const UpdateCategory = ({ match }) => {
   const { id } = match.params;
   const [category, setCategory] = useState({ id: id });
@@ -27,8 +27,6 @@ const UpdateCategory = ({ match }) => {
             placeholder="Name"
             onChange={(e) => setCategory({ ...category, name: e.target.value })}
           />
-
-          
         </FormGroup>
         <FormGroup>
           <Label for="exampleEmail">Description</Label>
@@ -37,18 +35,20 @@ const UpdateCategory = ({ match }) => {
             name="name"
             id="exampleEmail"
             placeholder="Description"
-            onChange={(e) => setCategory({ ...category, description: e.target.value })}
+            onChange={(e) =>
+              setCategory({ ...category, description: e.target.value })
+            }
           />
-          </FormGroup>
+        </FormGroup>
       </Form>
       <Button
-          color="success"
-          onClick={() => {
-            postCategory();
-          }}
-        >
-          Update
-        </Button>{" "}
+        color="success"
+        onClick={() => {
+          postCategory();
+        }}
+      >
+        Update
+      </Button>{" "}
     </div>
   );
 };

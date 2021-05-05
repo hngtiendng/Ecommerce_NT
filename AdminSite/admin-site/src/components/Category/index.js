@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Table, Button } from "reactstrap";
 import history from "../../utilities/history";
 import { useDispatch } from "react-redux";
-import { update_category,delete_category } from "../../actions/category";
+import { update_category, delete_category } from "../../actions/category";
 import { Link } from "react-router-dom";
 export default function CategoryList(props) {
   useEffect(() => {
@@ -11,11 +11,10 @@ export default function CategoryList(props) {
   }, []);
 
   const dispatch = useDispatch();
-  const refreshPage=async(e)=> {
-    await dispatch(delete_category(e.id))
+  const refreshPage = async (e) => {
+    await dispatch(delete_category(e.id));
     await window.location.reload(false);
-
-  }
+  };
   return (
     <div>
       <Link to="createCategory">
@@ -42,9 +41,9 @@ export default function CategoryList(props) {
                     <Link to={`updateCategory/${item.id}`}>
                       <Button color="info">Update</Button>{" "}
                     </Link>
-                    
-                      <Button color="danger" onClick={()=>refreshPage(item)}>Delete</Button>{" "}
-                    
+                    <Button color="danger" onClick={() => refreshPage(item)}>
+                      Delete
+                    </Button>{" "}
                   </td>
                 </tr>
               );

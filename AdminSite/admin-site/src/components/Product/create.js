@@ -3,7 +3,6 @@ import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { get_category_list } from "../../actions/category";
 import { create_product, get_product_list } from "../../actions/product";
-import { Link } from "react-router-dom";
 import history from "../../utilities/history";
 const CreateProduct = () => {
   useEffect(() => {
@@ -142,16 +141,6 @@ const CreateProduct = () => {
           <div id="preview"></div>
         </FormGroup>
       </Form>
-      {/* <Link to="/">
-        <Button
-          color="success"
-          onClick={() => {
-            CreateProduct();
-          }}
-        >
-          Create
-        </Button>{" "}
-      </Link> */}
       <Button
           color="success"
           onClick={() => {

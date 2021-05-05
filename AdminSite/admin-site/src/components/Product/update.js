@@ -7,7 +7,6 @@ import {
   get_product_list,
   update_product,
 } from "../../actions/product";
-import { Link } from "react-router-dom";
 import history from "../../utilities/history";
 const UpdateProduct = ({ match }) => {
   useEffect(() => {
@@ -22,7 +21,7 @@ const UpdateProduct = ({ match }) => {
   const dispatch = useDispatch();
 
   const { categoryList } = useSelector((state) => state.category);
-  const { productList } = useSelector((state) => state.product);
+t);
  
   const putProduct = async () => {
     await dispatch(update_product(product));

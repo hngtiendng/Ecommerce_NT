@@ -3,7 +3,6 @@ import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useDispatch } from "react-redux";
 import { create_category } from "../../actions/category";
 import history from "../../utilities/history";
-import { Link } from "react-router-dom";
 const CreateCategory = () => {
   const [category, setCategory] = useState();
   const postCategory = async () => {
@@ -24,8 +23,6 @@ const CreateCategory = () => {
             placeholder="Name"
             onChange={(e) => setCategory({ ...category, name: e.target.value })}
           />
-
-         
         </FormGroup>
         <FormGroup>
           <Label for="exampleEmail">Description</Label>
@@ -34,20 +31,20 @@ const CreateCategory = () => {
             name="name"
             id="exampleEmail"
             placeholder="Description"
-            onChange={(e) => setCategory({ ...category, description: e.target.value })}
+            onChange={(e) =>
+              setCategory({ ...category, description: e.target.value })
+            }
           />
-
-         
         </FormGroup>
       </Form>
       <Button
-          color="success"
-          onClick={() => {
-            postCategory();
-          }}
-        >
-          Create
-        </Button>
+        color="success"
+        onClick={() => {
+          postCategory();
+        }}
+      >
+        Create
+      </Button>
     </div>
   );
 };
