@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_category_list } from "../../actions/category";
 import { create_product, get_product_list } from "../../actions/product";
 import { Link } from "react-router-dom";
+import history from "../../utilities/history";
 const CreateProduct = () => {
   useEffect(() => {
     dispatch(get_category_list());
@@ -61,7 +62,8 @@ const CreateProduct = () => {
     formData.append("Description", product.description);
     formData.append("Price", product.price);
     formData.append("CategoryId", product.categoryId);
-    dispatch(create_product(formData));
+    await dispatch(create_product(formData));
+    await history.goBack();
   };
 
   return (
@@ -140,7 +142,7 @@ const CreateProduct = () => {
           <div id="preview"></div>
         </FormGroup>
       </Form>
-      <Link to="/">
+      {/* <Link to="/">
         <Button
           color="success"
           onClick={() => {
@@ -149,7 +151,15 @@ const CreateProduct = () => {
         >
           Create
         </Button>{" "}
-      </Link>
+      </Link> */}
+      <Button
+          color="success"
+          onClick={() => {
+            CreateProduct();
+          }}
+        >
+          Create
+        </Button>{" "}
     </div>
   );
 };

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ServerSite.Models
 {
@@ -10,7 +11,8 @@ namespace ServerSite.Models
         public string Content { get; set; }
         public double Price { get; set; }
         public int Inventory { get; set; }
-
+        public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public decimal AverageStar { get; set; }

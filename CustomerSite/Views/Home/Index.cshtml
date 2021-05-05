@@ -5,13 +5,8 @@
 @model IList<SharedVm.ProductVm>
 
 <div class="container">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            @await Component.InvokeAsync("Category")
-        </ul>
-    </nav>
     <div class="row">
-        <div class="col-9">@await Component.InvokeAsync("Banner")</div>
+        <div class="col">@await Component.InvokeAsync("Banner")</div>
     </div>
     <br />
     <div class="row">

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useDispatch } from "react-redux";
 import { create_category } from "../../actions/category";
-
+import history from "../../utilities/history";
 import { Link } from "react-router-dom";
 const CreateCategory = () => {
   const [category, setCategory] = useState();
   const postCategory = async () => {
-    dispatch(create_category(category));
+    await dispatch(create_category(category));
+    await history.goBack();
   };
   const dispatch = useDispatch();
 
@@ -39,9 +40,7 @@ const CreateCategory = () => {
          
         </FormGroup>
       </Form>
-      {/* <Link to='/product'> </Link> */}
-      <Link to="category">
-        <Button
+      <Button
           color="success"
           onClick={() => {
             postCategory();
@@ -49,7 +48,6 @@ const CreateCategory = () => {
         >
           Create
         </Button>
-      </Link>
     </div>
   );
 };

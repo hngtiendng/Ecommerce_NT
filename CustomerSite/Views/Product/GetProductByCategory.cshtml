@@ -1,11 +1,7 @@
 ﻿
 @model IList<SharedVm.ProductVm>
 <div class="container">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            @await Component.InvokeAsync("Category")
-        </ul>
-    </nav>
+    
     <div class="row">
         @foreach (var product in Model)
         {
@@ -18,7 +14,7 @@
                     </div>
                     <div class="card-footer">
 
-                        <a class="btn btn-primary" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">Xem chi tiết</a>
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">Detail</a>
                     </div>
                 </div>
             </div>

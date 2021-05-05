@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Table, Button } from "reactstrap";
-
+import history from "../../utilities/history";
 import { useDispatch } from "react-redux";
 import { update_category,delete_category } from "../../actions/category";
 import { Link } from "react-router-dom";

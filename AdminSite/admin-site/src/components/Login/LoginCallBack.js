@@ -13,7 +13,7 @@ export default function LoginCallBack() {
           .then((user) =>
             user.profile.role === "admin"
               ? (window.location.href = process.env.REACT_APP_ADMIN)
-              : (window.location.href = process.env.REACT_APP_ADMIN)
+              : (window.location.href = process.env.REACT_APP_SERVER)
           );
       })}
     </div>

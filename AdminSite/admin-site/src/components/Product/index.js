@@ -3,6 +3,7 @@ import { Table, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { delete_product } from "../../actions/product";
+import history from "../../utilities/history";
 console.log(process.env.REACT_APP_ADMIN);
 export default function ProductList(props) {
   const refreshPage=async(e)=> {
@@ -17,6 +18,9 @@ export default function ProductList(props) {
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">CreateDate</th>
+          <th scope="col">UpdateDate</th>
           <th scope="col">Price</th>
           <th scope="col">Image</th>
           <th scope="col">Option</th>
@@ -34,6 +38,9 @@ export default function ProductList(props) {
               <tr>
                 <th scope="row">{item.id}</th>
                 <td>{item.name}</td>
+                <td>{item.description}</td>
+                <td>{item.createDate}</td>
+                <td>{item.updateDate}</td>
                 <td>{item.price}</td>
                 <td>
                   <img

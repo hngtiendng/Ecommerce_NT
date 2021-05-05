@@ -51,6 +51,42 @@ namespace ServerSite.Controllers
                     Inventory = product.Inventory,
                     Name = product.Name,
                     Price = product.Price,
+                    ImageLocation = new List<string>(),
+                    UpdateDate=product.UpdateDate,
+                    CreateDate=product.CreateDate,
+                    
+                };
+                for (int i = 0; i < product.Images.Count; i++)
+                {
+                    productVm.ImageLocation.Add(product.Images.ElementAt(i).ImagePath);
+                }
+                productListVm.Add(productVm);
+            }
+            return productListVm;
+        }
+        [HttpGet("getProductByName/{name}")]
+        //[Authorize(Roles = "admin")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByName(string name)
+        {
+            var products = await _context.Products.Include(p => p.Images).Where(x=>x.Name.Contains(name)).OrderByDescending(x=>x.Name).Where(x => x.isDelete == false).ToListAsync();
+            if (products == null)
+            {
+                return NotFound();
+            }
+            List<ProductVm> productListVm = new();
+            foreach (var product in products)
+            {
+                ProductVm productVm = new()
+                {
+
+
+                    CategoryId = product.CategoryId,
+                    Description = product.Description,
+                    Id = product.Id,
+                    Inventory = product.Inventory,
+                    Name = product.Name,
+                    Price = product.Price,
                     ImageLocation = new List<string>()
                 };
                 for (int i = 0; i < product.Images.Count; i++)
@@ -61,7 +97,6 @@ namespace ServerSite.Controllers
             }
             return productListVm;
         }
-
         [HttpGet("{id}")]
         //[Authorize(Roles = "admin")]
         [AllowAnonymous]
@@ -132,7 +167,7 @@ namespace ServerSite.Controllers
             }
             return productListVm;
         }
-        [HttpPut]
+        [HttpPut("updateProduct/")]
         [Authorize(Roles = "admin")]
         //[AllowAnonymous]
         public async Task<IActionResult> UpdateProduct(ProductVm productVm)
@@ -146,7 +181,7 @@ namespace ServerSite.Controllers
             }
 
             product.Name = productVm.Name;
-
+            product.UpdateDate = Convert.ToDateTime(DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss"));
             product.CategoryId = productVm.CategoryId;
             product.Description = productVm.Description;
             product.Inventory = productVm.Inventory;
@@ -165,7 +200,7 @@ namespace ServerSite.Controllers
             {
                 Name = productFormVm.Name,
                 //Id = productVm.Id,
-
+                CreateDate = Convert.ToDateTime(DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss")),
                 CategoryId = productFormVm.CategoryId,
                 Description = productFormVm.Description,
                 Inventory = productFormVm.Inventory,

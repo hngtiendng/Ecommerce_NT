@@ -9,5 +9,6 @@ namespace CustomerSite.Services.Interfaces
         Task<ProductVm> GetProductById(int id);
         Task<IList<ProductVm>> GetProductByCategory(int idCategory);
         Task<IList<ProductVm>> GetAllProduct();
+        Task<IList<ProductVm>> GetProductByName(string name);
     }
 }

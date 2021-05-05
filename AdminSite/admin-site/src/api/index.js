@@ -6,8 +6,8 @@ axios.defaults.baseURL = process.env.REACT_APP_SERVER;
 const Product = {
   getAllProducts: async () => await axios.get("/api/Product"),
   createProduct: async (data) => await axios.post(`api/Product`, data),
-  updateProduct: async (data) => await axios.put("api/product", data),
-  deleteProduct: async (id) => await axios.put(`api/product/${id}`),
+  updateProduct: async (data) => await axios.put("api/Product/updateProduct/", data),
+  deleteProduct: async (id) => await axios.put(`api/Product/${id}`),
 };
 
 const Category = {

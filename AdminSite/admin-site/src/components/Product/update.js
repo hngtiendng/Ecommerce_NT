@@ -8,6 +8,7 @@ import {
   update_product,
 } from "../../actions/product";
 import { Link } from "react-router-dom";
+import history from "../../utilities/history";
 const UpdateProduct = ({ match }) => {
   useEffect(() => {
     dispatch(get_category_list());
@@ -17,21 +18,18 @@ const UpdateProduct = ({ match }) => {
   const { id } = match.params;
   console.log(id);
  
-  const [product, setProduct] = useState({ id: id });
+  const [product, setProduct] = useState({ id: id});
   const dispatch = useDispatch();
 
   const { categoryList } = useSelector((state) => state.category);
   const { productList } = useSelector((state) => state.product);
  
   const putProduct = async () => {
-    dispatch(update_product(product));
+    await dispatch(update_product(product));
     console.log(product);
+    await history.goBack();
   };
   var list_category = categoryList.data;
-  const checkVar = () => {
-    var countPD = productList.data.length;
-    console.log(countPD + "check");
-  };
   const btnClick = () => {
     return putProduct();
     //postImage()
@@ -95,9 +93,7 @@ const UpdateProduct = ({ match }) => {
         </FormGroup>
 
       </Form>
-      {/* <Link to='/product'> </Link> */}
-      <Link to="/category">
-        <Button
+      <Button
           color="success"
           onClick={() => {
             btnClick();
@@ -105,7 +101,6 @@ const UpdateProduct = ({ match }) => {
         >
           Update
         </Button>
-      </Link>
     </div>
   );
 };

@@ -16,6 +16,7 @@ import UpdateCategory from "./components/Category/update.js";
 import Logout from "./components/Logout/Logout";
 import LogoutCallBack from "./components/Logout/LogoutCallBack";
 import axios from "axios";
+import history from './utilities/history';
 require("dotenv").config();
 export default function App() {
   const config = {
@@ -38,7 +39,7 @@ export default function App() {
   console.log(user);
   if (user != "admin") {
     return (
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route exact path="/">
             <Login userManager={userManager}></Login>
@@ -49,7 +50,7 @@ export default function App() {
     );
   }
   return (
-    <Router>
+    <Router history={history}>
       <Container fluid="md">
         <TopMenu />
         <br />

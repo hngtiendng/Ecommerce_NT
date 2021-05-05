@@ -29,7 +29,7 @@ namespace ServerSite.Data
                 {
                     Id = 1,
                     Name = "Phone",
-                    Description= "Phone Description"
+                    Description = "Phone Description"
                 },
                 new Category
                 {
@@ -164,11 +164,52 @@ namespace ServerSite.Data
                     ImagePath = "/images/Phone/p1.png",
                     ProductId = 1
                 },
-               
+                new Image
+                {
+                    Id = 10,
+                    ImagePath = "/images/Phone/p1_1.png",
+                    ProductId = 1
+                },
+                new Image
+                {
+                    Id = 11,
+                    ImagePath = "/images/Phone/p1_2.png",
+                    ProductId = 1
+                },
+                new Image
+                {
+                    Id = 12,
+                    ImagePath = "/images/Phone/p1_3.png",
+                    ProductId = 1
+                },
+                new Image
+                {
+                    Id = 13,
+                    ImagePath = "/images/Phone/p1_4.png",
+                    ProductId = 1
+                },
                 new Image
                 {
                     Id = 2,
                     ImagePath = "/images/Phone/p2.png",
+                    ProductId = 2
+                },
+                new Image
+                {
+                    Id = 14,
+                    ImagePath = "/images/Phone/p2_1.png",
+                    ProductId = 2
+                },
+                new Image
+                {
+                    Id = 15,
+                    ImagePath = "/images/Phone/p2_2.png",
+                    ProductId = 2
+                },
+                new Image
+                {
+                    Id = 16,
+                    ImagePath = "/images/Phone/p2_3.png",
                     ProductId = 2
                 },
                 new Image
@@ -179,14 +220,68 @@ namespace ServerSite.Data
                 },
                 new Image
                 {
+                    Id = 17,
+                    ImagePath = "/images/Phone/p3_1.png",
+                    ProductId = 3
+                },
+                new Image
+                {
+                    Id = 18,
+                    ImagePath = "/images/Phone/p3_2.png",
+                    ProductId = 3
+                },
+                new Image
+                {
+                    Id = 19,
+                    ImagePath = "/images/Phone/p3_3.png",
+                    ProductId = 3
+                },
+                new Image
+                {
                     Id = 4,
                     ImagePath = "/images/Tablet/tl1.png",
                     ProductId = 4
                 },
                 new Image
                 {
+                    Id = 20,
+                    ImagePath = "/images/Tablet/tl1_1.png",
+                    ProductId = 4
+                },
+                 new Image
+                 {
+                     Id = 21,
+                     ImagePath = "/images/Tablet/tl1_2.png",
+                     ProductId = 4
+                 },
+                  new Image
+                  {
+                      Id = 22,
+                      ImagePath = "/images/Tablet/tl1_3.png",
+                      ProductId = 4
+                  },
+                new Image
+                {
                     Id = 5,
                     ImagePath = "/images/Tablet/tl2.png",
+                    ProductId = 5
+                },
+                new Image
+                {
+                    Id = 23,
+                    ImagePath = "/images/Tablet/tl2_1.png",
+                    ProductId = 5
+                },
+                new Image
+                {
+                    Id = 24,
+                    ImagePath = "/images/Tablet/tl2_2.png",
+                    ProductId = 5
+                },
+                new Image
+                {
+                    Id = 25,
+                    ImagePath = "/images/Tablet/tl2_3.png",
                     ProductId = 5
                 },
                 new Image
@@ -197,8 +292,47 @@ namespace ServerSite.Data
                 },
                 new Image
                 {
+                    Id = 26,
+                    ImagePath = "/images/Tablet/tl3_1.png",
+                    ProductId = 6
+                },
+                new Image
+                {
+                    Id = 27,
+                    ImagePath = "/images/Tablet/tl3_2.png",
+                    ProductId = 6
+                },
+                new Image
+                {
+                    Id = 28,
+                    ImagePath = "/images/Tablet/tl3_3.png",
+                    ProductId = 6
+                },
+                new Image
+                {
                     Id = 7,
                     ImagePath = "/images/Laptop/lt1.png",
+                    ProductId = 7
+
+                },
+                new Image
+                {
+                    Id = 29,
+                    ImagePath = "/images/Laptop/lt1_1.png",
+                    ProductId = 7
+
+                },
+                new Image
+                {
+                    Id = 30,
+                    ImagePath = "/images/Laptop/lt1_2.png",
+                    ProductId = 7
+
+                },
+                new Image
+                {
+                    Id = 31,
+                    ImagePath = "/images/Laptop/lt1_3.png",
                     ProductId = 7
 
                 },
@@ -211,8 +345,50 @@ namespace ServerSite.Data
                 },
                 new Image
                 {
+                    Id = 32,
+                    ImagePath = "/images/Laptop/lt2_1.png",
+                    ProductId = 8
+
+                },
+                new Image
+                {
+                    Id = 33,
+                    ImagePath = "/images/Laptop/lt2_2.png",
+                    ProductId = 8
+
+                },
+                new Image
+                {
+                    Id = 34,
+                    ImagePath = "/images/Laptop/lt2_3.png",
+                    ProductId = 8
+
+                },
+                new Image
+                {
                     Id = 9,
                     ImagePath = "/images/Laptop/lt3.png",
+                    ProductId = 9
+
+                },
+                new Image
+                {
+                    Id = 35,
+                    ImagePath = "/images/Laptop/lt3_1.png",
+                    ProductId = 9
+
+                },
+                new Image
+                {
+                    Id = 36,
+                    ImagePath = "/images/Laptop/lt3_2.png",
+                    ProductId = 9
+
+                },
+                new Image
+                {
+                    Id = 37,
+                    ImagePath = "/images/Laptop/lt3_3.png",
                     ProductId = 9
 
                 }

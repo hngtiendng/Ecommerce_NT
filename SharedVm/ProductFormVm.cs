@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 
 namespace SharedVm
@@ -13,6 +14,7 @@ namespace SharedVm
         public int Inventory { get; set; }
 
         public int CategoryId { get; set; }
+        public DateTime CreateDate { get; set; }
 
     }
 }
