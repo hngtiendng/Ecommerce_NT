@@ -1,6 +1,5 @@
 ﻿using CustomerSite.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using SharedVm;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace CustomerSite.Controllers
         private readonly ICartApiClient _cartApiClient;
         private readonly IOrderApiClient _orderApiClient;
         private readonly IRateApiClient _ratingApiClient;
-        public CartController(ICartApiClient cartApiClient, IOrderApiClient orderApiClient,IRateApiClient rateApiClient)
+        public CartController(ICartApiClient cartApiClient, IOrderApiClient orderApiClient, IRateApiClient rateApiClient)
         {
             _cartApiClient = cartApiClient;
             _orderApiClient = orderApiClient;
@@ -59,7 +58,7 @@ namespace CustomerSite.Controllers
 
         }
 
-        public async Task<IActionResult> AddCartItem(string userId, int productId, int quantity,int Star)
+        public async Task<IActionResult> AddCartItem(string userId, int productId, int quantity, int Star)
         {
             RateVm x = new();
             x.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);

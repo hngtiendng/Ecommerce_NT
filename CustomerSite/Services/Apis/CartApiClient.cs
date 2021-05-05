@@ -13,14 +13,14 @@ namespace CustomerSite.Services.Apis
     public class CartApiClient : ICartApiClient
     {
         private readonly IConfiguration _configuration;
-        
+
         private readonly IRequest _request;
 
-        public CartApiClient(IConfiguration configuration,IRequest request)
+        public CartApiClient(IConfiguration configuration, IRequest request)
         {
             _request = request;
             _configuration = configuration;
-     
+
         }
         public async Task<CartVm> CreateCart(CartVm cartVm)
         {

@@ -1,7 +1,5 @@
 ﻿using CustomerSite.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using SharedVm;
-using System.Security.Claims;
 using System.Threading.Tasks;
 namespace CustomerSite.Controllers
 {

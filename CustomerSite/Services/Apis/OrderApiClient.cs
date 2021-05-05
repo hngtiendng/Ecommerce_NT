@@ -13,12 +13,12 @@ namespace CustomerSite.Services.Apis
 {
     public class OrderApiClient : IOrderApiClient
     {
-        
+
         private readonly IConfiguration _configuration;
         private readonly IRequest _request;
-        public OrderApiClient( IConfiguration configuration, IRequest request)
+        public OrderApiClient(IConfiguration configuration, IRequest request)
         {
-            
+
             _configuration = configuration;
             _request = request;
         }

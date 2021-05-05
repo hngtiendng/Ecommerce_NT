@@ -119,7 +119,7 @@ namespace ServerSite
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();    
+                app.UseMigrationsEndPoint();
                 app.UseMigrationsEndPoint();
             }
             else
@@ -134,7 +134,7 @@ namespace ServerSite
             app.UseRouting();
 
 
-                app.UseCors(options => options.WithOrigins(AdminUrl).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors(options => options.WithOrigins(AdminUrl).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseIdentityServer();
             app.UseAuthorization();

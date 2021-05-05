@@ -85,7 +85,7 @@ namespace ServerSite.Controllers
             //List<OrderVm> orderVms = new();
 
             List<OrderDetailVm> orderDetailVms = new();
-            List<OrderVm> lstOrder = new ();
+            List<OrderVm> lstOrder = new();
             foreach (var order in order1)
             {
                 foreach (var od in order.OrderDetails.ToList())
@@ -150,7 +150,7 @@ namespace ServerSite.Controllers
             _context.Orders.Add(Orders);
             await _context.SaveChangesAsync();
 
-            OrderDetail oddt = new ();
+            OrderDetail oddt = new();
             foreach (OrderDetailVm x in orderDetailVm1)
             {
 

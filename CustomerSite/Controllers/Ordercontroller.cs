@@ -1,6 +1,5 @@
 ﻿using CustomerSite.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using System.Threading.Tasks;
 namespace CustomerSite.Controllers
@@ -8,11 +7,11 @@ namespace CustomerSite.Controllers
     public class Ordercontroller : Controller
     {
         private readonly IOrderApiClient _orderApiClient;
-        
+
 
         public Ordercontroller(IOrderApiClient orderApiClient)
         {
-           
+
             _orderApiClient = orderApiClient;
         }
 

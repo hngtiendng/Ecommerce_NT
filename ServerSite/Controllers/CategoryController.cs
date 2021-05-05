@@ -26,7 +26,7 @@ namespace ServerSite.Controllers
         public async Task<ActionResult<IEnumerable<CategoryVm>>> GetAllCategory()
         {
             return await _context.Categories.Where(x => x.isDelete == false)
-                .Select(x => new CategoryVm { Name = x.Name, Id = x.Id ,Description=x.Description})
+                .Select(x => new CategoryVm { Name = x.Name, Id = x.Id, Description = x.Description })
                 .ToListAsync();
         }
 
@@ -96,7 +96,7 @@ namespace ServerSite.Controllers
             var category = new Category
             {
                 Name = categoryVm.Name,
-                Description=categoryVm.Description
+                Description = categoryVm.Description
             };
 
             _context.Categories.Add(category);

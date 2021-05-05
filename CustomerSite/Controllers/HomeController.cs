@@ -2,9 +2,6 @@
 using CustomerSite.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using SharedVm;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -12,13 +9,13 @@ namespace CustomerSite.Controllers
 {
     public class HomeController : Controller
     {
-       
+
         private readonly IProductApiClient _productApiClient;
         private readonly IConfiguration _configuration;
 
         public HomeController(IProductApiClient productApiClient, IConfiguration configuration)
         {
-            
+
             _productApiClient = productApiClient;
             _configuration = configuration;
         }

@@ -23,7 +23,7 @@ namespace ServerSite.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<IEnumerable<UserVm>>> GetUsers()
         {
             var List = await _context.Users.ToListAsync();

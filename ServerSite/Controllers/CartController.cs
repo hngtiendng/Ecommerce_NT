@@ -249,7 +249,7 @@ namespace ServerSite.Controllers
         //[AllowAnonymous]
         public async Task<IActionResult> RemoveItem(string userId, int productId)
         {
-            var cart = await _context.Carts.Include(c => c.CartItems).ThenInclude(c=>c.Product).FirstOrDefaultAsync(x => x.UserId == userId);
+            var cart = await _context.Carts.Include(c => c.CartItems).ThenInclude(c => c.Product).FirstOrDefaultAsync(x => x.UserId == userId);
             foreach (CartItem p in cart.CartItems)
             {
                 if (p.Product.Id == productId)

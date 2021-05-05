@@ -52,9 +52,9 @@ namespace ServerSite.Controllers
                     Name = product.Name,
                     Price = product.Price,
                     ImageLocation = new List<string>(),
-                    UpdateDate=product.UpdateDate,
-                    CreateDate=product.CreateDate,
-                    
+                    UpdateDate = product.UpdateDate,
+                    CreateDate = product.CreateDate,
+
                 };
                 for (int i = 0; i < product.Images.Count; i++)
                 {
@@ -69,7 +69,7 @@ namespace ServerSite.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByName(string name)
         {
-            var products = await _context.Products.Include(p => p.Images).Where(x=>x.Name.Contains(name)).OrderByDescending(x=>x.Name).Where(x => x.isDelete == false).ToListAsync();
+            var products = await _context.Products.Include(p => p.Images).Where(x => x.Name.Contains(name)).OrderByDescending(x => x.Name).Where(x => x.isDelete == false).ToListAsync();
             if (products == null)
             {
                 return NotFound();
@@ -222,7 +222,7 @@ namespace ServerSite.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    Image nFile = new ();
+                    Image nFile = new();
                     nFile.ImagePath = $"/images/{fileName}";
 
                     nFile.ProductId = product.Id;
